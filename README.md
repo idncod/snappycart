@@ -1,4 +1,6 @@
-readme_content = """# 🛒 SnappyCart
+![CI](https://github.com/idncod/snappycart/actions/workflows/ci.yml/badge.svg) ![Conventional Commits](https://img.shields.io/badge/commits-conventional-brightgreen.svg)
+
+ 🛒 SnappyCart
 
 **SnappyCart** is a modern, headless React cart system designed for plug-and-play use in any React app. With full support for local state and future SaaS syncing, it's the perfect cart foundation — open-source and Pro-ready.
 
