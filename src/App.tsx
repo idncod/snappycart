@@ -1,11 +1,16 @@
+import CartDrawer from './cart/components/CartDrawer.tsx';
+import { useCart } from './cart/hooks/useCart.ts';
 
-function App() {
+export default function App() {
+  const { addItem } = useCart();
 
   return (
     <>
-      Snappy Cart
+      <h1>Demo eCommerce</h1>
+      <button onClick={() => addItem({ id: 1, name: 'Apple', image: 'apple.png', quantity: 1 })}>
+        Add Apple
+      </button>
+      <CartDrawer />
     </>
-  )
+  );
 }
-
-export default App
