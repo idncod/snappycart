@@ -3,6 +3,16 @@
   "private": false,
   "version": "1.1.0",
   "type": "module",
+  "description": "A lightweight, embeddable React cart component with context support",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "keywords": ["react", "cart", "shopping", "context", "checkout"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/idncod/snappycart"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,6 +21,10 @@
     "test": "vitest",
     "prepare": "husky",
     "release": "standard-version"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js}": [

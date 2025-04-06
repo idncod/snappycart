@@ -1,4 +1,5 @@
-![CI](https://github.com/idncod/snappycart/actions/workflows/ci.yml/badge.svg) ![Conventional Commits](https://img.shields.io/badge/commits-conventional-brightgreen.svg)
+![CI](https://github.com/idncod/snappycart/actions/workflows/ci.yml/badge.svg)
+![Conventional Commits](https://img.shields.io/badge/commits-conventional-brightgreen.svg)
 
  🛒 SnappyCart
 
@@ -6,18 +7,18 @@
 
 ---
 
-## 🚀 Features
+## Features
 
-- ✅ Headless cart logic (`add`, `remove`, `clear`, etc.)
-- ✅ React context & hook (`useCart`)
-- ✅ Customizable sliding cart drawer
-- ✅ TypeScript support
-- ✅ Built-in persistence (localStorage)
-- 🧠 Designed for extension (Pro syncing, analytics, checkout)
+- Headless cart logic (`add`, `remove`, `clear`, etc.)
+- React context & hook (`useCart`)
+- Customizable sliding cart drawer
+- TypeScript support
+- Built-in persistence (localStorage)
+- Designed for extension (Pro syncing, analytics, checkout)
 
 ---
 
 ## 📦 Installation
 
 ```bash
-npm install snappy-cart
+npm install snappycart
