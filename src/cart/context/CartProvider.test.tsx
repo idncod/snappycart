@@ -1,66 +1,78 @@
+import React from 'react';
 import { renderHook, act } from '@testing-library/react';
 import { CartProvider, useCartContext } from './CartProvider';
-import React from 'react';
 
 describe('CartProvider', () => {
   const wrapper = ({ children }: { children: React.ReactNode }) => (
     <CartProvider>{children}</CartProvider>
   );
 
-  it('adds an item to the cart', () => {
+  it('adds an item to the cart with default quantity 1', () => {
     const { result } = renderHook(() => useCartContext(), { wrapper });
 
     act(() => {
-      result.current.addItem({ id: 1, name: 'Apple', image: 'apple.png', quantity: 1 });
+      result.current.addItem({ id: 1, name: 'Apple', price: 1, imageUrl: 'apple.png' });
     });
 
-    expect(result.current.cart).toHaveLength(1);
-    expect(result.current.cart[0].quantity).toBe(1);
+    expect(result.current.items).toHaveLength(1);
+    expect(result.current.items[0].quantity).toBe(1);
   });
 
-  it('increases quantity if item exists', () => {
+  it('adds with explicit quantity', () => {
     const { result } = renderHook(() => useCartContext(), { wrapper });
 
     act(() => {
-      result.current.addItem({ id: 1, name: 'Apple', image: 'apple.png', quantity: 1 });
-      result.current.addItem({ id: 1, name: 'Apple', image: 'apple.png', quantity: 2 });
+      result.current.addItem({ id: 1, name: 'Apple', price: 1 }, 3);
     });
 
-    expect(result.current.cart[0].quantity).toBe(3);
+    expect(result.current.items[0].quantity).toBe(3);
   });
 
-  it('decreases quantity and removes if zero', () => {
+  it('increments and decrements, removing at zero', () => {
     const { result } = renderHook(() => useCartContext(), { wrapper });
 
     act(() => {
-      result.current.addItem({ id: 1, name: 'Apple', image: 'apple.png', quantity: 2 });
-      result.current.decreaseItem(1);
-      result.current.decreaseItem(1);
+      result.current.addItem({ id: 1, name: 'Apple', price: 1 }, 1);
+      result.current.increment(1);
+      result.current.decrement(1);
+      result.current.decrement(1);
     });
 
-    expect(result.current.cart).toHaveLength(0);
+    expect(result.current.items).toHaveLength(0);
   });
 
   it('removes item directly', () => {
     const { result } = renderHook(() => useCartContext(), { wrapper });
 
     act(() => {
-      result.current.addItem({ id: 2, name: 'Banana', image: 'banana.png', quantity: 1 });
+      result.current.addItem({ id: 2, name: 'Banana', price: 1 }, 1);
       result.current.removeItem(2);
     });
 
-    expect(result.current.cart).toHaveLength(0);
+    expect(result.current.items).toHaveLength(0);
+  });
+
+  it('computes totals', () => {
+    const { result } = renderHook(() => useCartContext(), { wrapper });
+
+    act(() => {
+      result.current.addItem({ id: 1, name: 'Apple', price: 2 }, 2);
+      result.current.addItem({ id: 2, name: 'Banana', price: 1 }, 1);
+    });
+
+    expect(result.current.totalItems).toBe(3);
+    expect(result.current.subtotal).toBe(5);
   });
 
   it('clears the cart', () => {
     const { result } = renderHook(() => useCartContext(), { wrapper });
 
     act(() => {
-      result.current.addItem({ id: 1, name: 'Apple', image: 'apple.png', quantity: 1 });
-      result.current.addItem({ id: 2, name: 'Banana', image: 'banana.png', quantity: 1 });
-      result.current.clearCart();
+      result.current.addItem({ id: 1, name: 'Apple', price: 1 }, 1);
+      result.current.addItem({ id: 2, name: 'Banana', price: 1 }, 1);
+      result.current.clear();
     });
 
-    expect(result.current.cart).toHaveLength(0);
+    expect(result.current.items).toHaveLength(0);
   });
 });
