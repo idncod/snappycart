@@ -1,0 +1,203 @@
+@use "sass:color";
+@use "../../styles/variables" as *;
+
+.sc-cart-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  line-height: 1;
+
+  background-color: $color-success;
+  color: white;
+  border: none;
+  border-radius: 999px;
+
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-lg;
+
+  box-shadow: $shadow-md;
+  cursor: pointer;
+  z-index: $z-index-modal;
+  transition: background-color $transition-default;
+
+  &:hover {
+    background-color: color.adjust($color-success, $lightness: -10%);
+  }
+}
+
+.sc-cart-button.sc-top-right {
+  position: fixed;
+  top: $spacing-md;
+  right: $spacing-lg;
+}
+
+.sc-cart-button.sc-bottom-right {
+  position: fixed;
+  bottom: $spacing-lg;
+  right: $spacing-lg;
+}
+
+.sc-cart-button.sc-inline {
+  position: relative;
+  box-shadow: none;
+  background-color: transparent;
+  color: $color-success;
+  padding: 0;
+}
+
+.sc-cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+
+  border-radius: 999px;
+  background: white;
+  color: $color-success;
+  font-size: 12px;
+  font-weight: $font-weight-bold;
+
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  box-shadow: $shadow-sm;
+}
+
+.sc-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: $z-index-drawer - 50;
+}
+
+.sc-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(420px, 92vw);
+  height: 100%;
+  background: white;
+  border-left: 1px solid $color-border;
+  z-index: $z-index-drawer;
+  display: flex;
+  flex-direction: column;
+}
+
+.sc-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md;
+  border-bottom: 1px solid $color-border;
+}
+
+.sc-drawer-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: $font-weight-bold;
+}
+
+.sc-close {
+  border: 1px solid $color-border;
+  background: white;
+  border-radius: $radius-md;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.sc-drawer-body {
+  padding: $spacing-md;
+  overflow: auto;
+  flex: 1;
+}
+
+.sc-item {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid $color-border;
+}
+
+.sc-item-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: $radius-md;
+  border: 1px solid $color-border;
+  background: $color-bg;
+}
+
+.sc-item-name {
+  font-weight: $font-weight-bold;
+  color: $color-text;
+}
+
+.sc-item-price {
+  font-size: 13px;
+  color: #555;
+}
+
+.sc-item-controls {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+}
+
+.sc-qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sc-qty button {
+  border: 1px solid $color-border;
+  background: white;
+  border-radius: $radius-md;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.sc-remove {
+  border: 1px solid color.adjust($color-danger, $lightness: 25%);
+  background: white;
+  color: $color-danger;
+  border-radius: $radius-md;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.sc-footer {
+  border-top: 1px solid $color-border;
+  padding: $spacing-md;
+  display: grid;
+  gap: 10px;
+}
+
+.sc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: $font-weight-bold;
+}
+
+.sc-clear {
+  border: 1px solid $color-border;
+  background: #111;
+  color: white;
+  border-radius: $radius-md;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.sc-item-controls {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+}
