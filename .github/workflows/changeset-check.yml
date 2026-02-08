@@ -12,4 +12,4 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npx changeset status --since=origin/main
+      - run: npx changeset status --since=origin/master
