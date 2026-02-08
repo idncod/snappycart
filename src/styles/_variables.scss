@@ -1,0 +1,45 @@
+// ----------------
+// Snappycart Theme
+// ----------------
+
+// Colors
+$color-primary:       #2F6846;   // Rich botanical green
+$color-accent:        #FFD56B;   // Soft honey yellow
+$color-bg:            #FAFAF7;   // Clean off-white
+$color-text:          #2B2B2B;   // Elegant charcoal
+$color-muted:         #D8D2C2;   // Neutral taupe
+$color-border:        #E5E5E0;   // Light border grey
+$color-success:       #30A46C;   // Action green
+$color-danger:        #D9534F;   // Warning red
+
+// Typography
+$font-size-base:      1rem;
+$font-size-sm:        0.875rem;
+$font-size-lg:        1.25rem;
+$font-weight-normal:  400;
+$font-weight-bold:    600;
+
+// Spacing
+$spacing-xs:          0.25rem;
+$spacing-sm:          0.5rem;
+$spacing-md:          1rem;
+$spacing-lg:          1.5rem;
+$spacing-xl:          2rem;
+
+// Border radius
+$radius-sm:           6px;
+$radius-md:           12px;
+$radius-lg:           20px;
+
+// Shadows
+$shadow-sm:           0 1px 3px rgba(0, 0, 0, 0.06);
+$shadow-md:           0 4px 10px rgba(0, 0, 0, 0.1);
+$shadow-lg:           0 8px 20px rgba(0, 0, 0, 0.12);
+
+// Transitions
+$transition-default:  0.2s ease;
+
+// Z-index
+$z-index-header:      1000;
+$z-index-drawer:      1100;
+$z-index-modal:       1200;
