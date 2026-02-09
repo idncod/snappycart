@@ -22,3 +22,20 @@
 
 ```bash
 npm install snappycart
+```
+
+---
+
+## Styles
+
+SnappyCart ships a default stylesheet. Import it at the root of your app:
+
+```js
+import "snappycart/styles.css";
+```
+
+For Next.js (App Router), add the import to your root layout (e.g. `app/layout.tsx`):
+
+```tsx
+import "snappycart/styles.css";
+```
