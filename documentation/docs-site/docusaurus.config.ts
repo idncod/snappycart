@@ -3,7 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'SnappyCart Docs',
+  title: 'Snappycart Docs',
   tagline: 'Headless cart for React with TypeScript and optional UI building blocks',
   favicon: 'img/favicon.ico',
 
@@ -46,20 +46,18 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'SnappyCart',
+      title: 'Snappycart',
       logo: {
-        alt: 'SnappyCart',
-        src: 'img/logo.svg',
+        alt: 'Snappycart',
+        src: 'img/snappycart_logo.svg',
+        href: '/docs/intro',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Docs',
-        },
+        {to: '/docs/intro', label: 'Docs', position: 'left'},
         {to: '/docs/api', label: 'API', position: 'left'},
         {to: '/docs/how-to-contribute', label: 'Contributing', position: 'left'},
+        {to: '/docs/roadmap', label: 'Roadmap', position: 'left'},
+
         {
           href: 'https://www.npmjs.com/package/snappycart',
           label: 'npm',
@@ -99,7 +97,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} SnappyCart.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Snappycart.`,
     },
     prism: {
       theme: prismThemes.github,
