@@ -16,7 +16,6 @@ export default function LogoBoom(): ReactNode {
                 <span/>
             </div>
             <Logo className={styles.logo}/>
-            <div className={styles.tag}>BOOM CART ENERGY</div>
         </div>
     );
 }
