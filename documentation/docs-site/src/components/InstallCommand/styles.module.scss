@@ -1,0 +1,161 @@
+.wrap {
+  position: relative;
+  margin-top: 1.35rem;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 14px 14px 14px;
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.62);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 70px rgba(0, 0, 0, 0.42);
+  isolation: isolate;
+}
+
+.wrap::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 19px;
+  background:
+          radial-gradient(700px 220px at 20% 0%, rgba(34, 211, 238, 0.28), transparent 60%),
+          radial-gradient(520px 260px at 90% 30%, rgba(251, 191, 36, 0.22), transparent 62%),
+          radial-gradient(600px 320px at 50% 110%, rgba(124, 58, 237, 0.22), transparent 60%);
+  filter: blur(16px);
+  opacity: 0.9;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
+  background:
+          radial-gradient(circle at 12% 28%, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px),
+          radial-gradient(circle at 22% 62%, rgba(34, 211, 238, 0.9) 0 1px, transparent 2px),
+          radial-gradient(circle at 36% 22%, rgba(251, 191, 36, 0.9) 0 1px, transparent 2px),
+          radial-gradient(circle at 52% 72%, rgba(255, 255, 255, 0.6) 0 1px, transparent 2px),
+          radial-gradient(circle at 68% 30%, rgba(167, 139, 250, 0.85) 0 1px, transparent 2px),
+          radial-gradient(circle at 82% 64%, rgba(255, 255, 255, 0.6) 0 1px, transparent 2px),
+          radial-gradient(circle at 90% 22%, rgba(34, 211, 238, 0.65) 0 1px, transparent 2px);
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+.kicker {
+  position: relative;
+  z-index: 2;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  width: fit-content;
+}
+
+.kickerText {
+  background: linear-gradient(
+                  90deg,
+                  rgba(34, 211, 238, 0.95),
+                  rgba(251, 191, 36, 0.98),
+                  rgba(167, 139, 250, 0.95),
+                  rgba(34, 211, 238, 0.95)
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 2.2s linear infinite;
+  text-shadow: 0 0 18px rgba(34, 211, 238, 0.22);
+}
+
+.kickerGem {
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, rgba(255,255,255,0.95), rgba(34,211,238,0.55), transparent 70%);
+  clip-path: polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%);
+  box-shadow: 0 0 14px rgba(34, 211, 238, 0.45);
+}
+
+.row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.code {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.38);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  color: rgba(229, 231, 235, 0.94);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 999px;
+
+  min-width: 132px;
+  justify-content: center;
+
+  white-space: nowrap;
+  flex: 0 0 auto;
+  background: linear-gradient(90deg, rgba(124, 58, 237, 0.25), rgba(34, 211, 238, 0.16));
+  border: 1px solid rgba(167, 139, 250, 0.28);
+  color: rgba(229, 231, 235, 0.94);
+  cursor: pointer;
+  box-shadow: 0 16px 40px rgba(124, 58, 237, 0.14);
+}
+
+.copyBtn:hover {
+  background: linear-gradient(90deg, rgba(124, 58, 237, 0.33), rgba(34, 211, 238, 0.22));
+}
+
+.copyIcon {
+  display: inline-flex;
+  opacity: 0.95;
+}
+
+.copyText {
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 220% 50%; }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.35; transform: translateY(0); }
+  45% { opacity: 0.85; transform: translateY(-1px); }
+  100% { opacity: 0.35; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap::after,
+  .kickerText {
+    animation: none;
+  }
+}
