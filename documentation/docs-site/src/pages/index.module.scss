@@ -1,0 +1,173 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3rem, 4.2vw, 4.2rem) 0 clamp(2.4rem, 3.2vw, 3.4rem);
+
+  background:
+          radial-gradient(1100px circle at 15% 10%, rgba(124, 58, 237, 0.22), transparent 55%),
+          radial-gradient(900px circle at 85% 20%, rgba(34, 211, 238, 0.16), transparent 55%),
+          radial-gradient(900px circle at 50% 95%, rgba(251, 191, 36, 0.14), transparent 55%),
+          #060812;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(6, 8, 18, 0.08), rgba(6, 8, 18, 0.88));
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.copy {
+  text-align: left;
+}
+
+.kicker {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(229, 231, 235, 0.92);
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(167, 139, 250, 0.28);
+  backdrop-filter: blur(10px);
+}
+
+.title {
+  margin-top: 0.9rem;
+  font-size: clamp(2.6rem, 4vw, 4.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: rgba(229, 231, 235, 0.96);
+  text-shadow: 0 0 26px rgba(124, 58, 237, 0.25);
+}
+
+.subtitle {
+  margin-top: 0.85rem;
+  font-size: 1.1rem;
+  max-width: 60ch;
+  color: rgba(229, 231, 235, 0.82);
+}
+
+.chips {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.chips span {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  color: rgba(229, 231, 235, 0.88);
+  font-weight: 700;
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+}
+
+.ctaRow {
+  margin-top: 1.15rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btnContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1;
+}
+
+.btnIcon {
+  display: inline-flex;
+  opacity: 0.95;
+}
+
+.installWrap {
+  margin-top: 0.9rem;
+}
+
+.install {
+  margin-top: 1.35rem;
+  display: inline-flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(2, 6, 23, 0.58);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.installLabel {
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(34, 211, 238, 0.95);
+}
+
+.install code {
+  color: rgba(229, 231, 235, 0.9);
+}
+
+.visual {
+  display: grid;
+  place-items: center;
+  transform: translateY(10px) scale(0.96);
+  transform-origin: center;
+}
+
+@media (max-width: 996px) {
+  .hero {
+    padding: 4rem 0 3.25rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .copy {
+    text-align: center;
+  }
+
+  .ctaRow {
+    justify-content: center;
+  }
+
+  .chips {
+    justify-content: center;
+  }
+
+  .visual {
+    transform: none;
+  }
+}
+
+@media (max-height: 820px) {
+  .hero {
+    padding: 2.8rem 0 2.4rem;
+  }
+
+  .title {
+    font-size: clamp(2.2rem, 3.4vw, 3.6rem);
+  }
+
+  .visual {
+    transform: translateY(14px) scale(0.92);
+  }
+}
