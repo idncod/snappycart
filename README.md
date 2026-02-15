@@ -4,7 +4,7 @@
 
  # Snappycart <img src="https://raw.githubusercontent.com/idncod/snappycart/841c7d80ecdf3f21b2f4a5ba2300ee26dc919101/documentation/docs-site/static/img/snappycart_logo.svg" alt="Snappycart logo" height="40" >
 
-**SnappyCart** is a modern, headless React cart system designed for plug-and-play use in any React app. With full support for local state and future SaaS syncing, it's the perfect cart foundation — open-source and Pro-ready.
+**SnappyCart** is a modern, headless React cart system designed for plug-and-play use in any React app. With full support for local state and future SaaS syncing, it's the perfect cart foundation - open-source and Pro-ready.
 
 ---
 
