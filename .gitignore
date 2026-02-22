@@ -28,4 +28,3 @@ out/
 *.sw?
 
 #Changeset
-.changeset/*.md
