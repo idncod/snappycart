@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+
+.next/
+out/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -24,4 +28,3 @@ dist-ssr
 *.sw?
 
 #Changeset
-.changeset/*.md
