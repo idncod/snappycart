@@ -5,11 +5,12 @@ export default defineConfig({
 
   e2e: {
     setupNodeEvents(_on, _config) {
-       return _config
+      return _config;
     },
   },
 
   component: {
+    supportFile: "cypress/support/component.ts",
     devServer: {
       framework: "next",
       bundler: "webpack",
