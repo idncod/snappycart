@@ -28,3 +28,10 @@ out/
 *.sw?
 .next/
 #Changeset
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
