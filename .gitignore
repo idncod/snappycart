@@ -26,5 +26,5 @@ out/
 *.njsproj
 *.sln
 *.sw?
-
+.next/
 #Changeset
