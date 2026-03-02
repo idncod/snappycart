@@ -1,5 +1,5 @@
-import CartDrawer from '../components/CartDrawer.tsx';
-import { CartProvider } from '../context/CartProvider.tsx';
+import CartDrawer from '../components/CartDrawer';
+import { CartProvider } from '../context/CartProvider';
 
 const sel = (id: string) => `[data-cy="${id}"]`;
 
