@@ -16,7 +16,12 @@ export default function CartIcon({ position = 'bottom-right', onClick }: CartIco
         : 'sc-bottom-right';
 
   return (
-    <button type="button" className={`sc-cart-button ${posClass}`} onClick={onClick}>
+    <button
+      type="button"
+      className={`sc-cart-button ${posClass}`}
+      onClick={onClick}
+      aria-label={`Open cart, ${totalItems} items`}
+    >
       Cart
       <span className="sc-cart-badge">{totalItems}</span>
     </button>
