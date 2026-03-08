@@ -40,7 +40,7 @@ export default function App() {
           { label: 'Quickstart', href: '#quickstart' },
           { label: 'Use cases', href: '#use-cases' },
           { label: 'Demo shop', href: '#demo-shop' },
-          { label: 'GitHub', href: 'https://github.com/your-org/snappycart', external: true },
+          { label: 'GitHub', href: 'https://github.com/idncod/snappycart', external: true },
           { label: 'npm', href: 'https://www.npmjs.com/package/snappycart', external: true },
         ]}
       />
