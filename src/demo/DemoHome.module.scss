@@ -1,0 +1,221 @@
+@use "../styles/variables" as *;
+
+.appShell {
+  min-height: 100vh;
+}
+
+.page {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 34px 0 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.hero {
+  padding: 34px 0 10px;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.heroLeft {
+  max-width: 62ch;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-muted;
+}
+
+.h1 {
+  margin: 0 0 10px;
+  font-size: 56px;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  font-weight: 900;
+  color: $color-text;
+}
+
+.p {
+  margin: 0 0 18px;
+  color: $color-muted;
+  max-width: 70ch;
+  font-size: 16px;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  border-radius: 999px;
+  padding: 11px 14px;
+  font-weight: 750;
+  transition: $transition-default;
+  cursor: pointer;
+}
+
+.primaryBtn {
+  border: 0;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 1), rgba(166, 177, 255, 1));
+  color: $color-text;
+  box-shadow: 0 16px 36px rgba(124, 92, 255, 0.18);
+}
+
+.primaryBtn:hover {
+  filter: brightness(1.04);
+}
+
+.secondaryBtn {
+  border: 1px solid $color-border;
+  background: $color-surface;
+  color: $color-text;
+}
+
+.secondaryBtn:hover {
+  background: $color-surface2;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.badge {
+  border: 1px solid $color-border;
+  background: $color-surface;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: $color-muted;
+}
+
+.heroRight {
+  display: grid;
+  gap: 14px;
+}
+
+.card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: $shadow-lg;
+}
+
+.cardTitle {
+  padding: 14px 16px;
+  font-weight: 850;
+  color: $color-text;
+}
+
+.cardBody {
+  padding: 16px;
+}
+
+.miniGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .miniGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.miniBtn {
+  border: 1px solid $color-border;
+  background: rgba(255, 255, 255, 0.04);
+  color: $color-text;
+  border-radius: 999px;
+  padding: 11px 12px;
+  font-weight: 720;
+  cursor: pointer;
+  transition: $transition-default;
+}
+
+.miniBtn:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.tip {
+  margin-top: 12px;
+  font-size: 13px;
+  color: $color-muted;
+}
+
+.bullets {
+  display: grid;
+  gap: 10px;
+  padding-bottom: 2px;
+}
+
+.bullet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $color-muted;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(166, 177, 255, 1);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.18);
+}
+
+.section {
+  padding: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 14px;
+}
+
+@media (max-width: 720px) {
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  font-weight: 850;
+  color: $color-text;
+}
+
+.note {
+  margin: 0;
+  font-size: 13px;
+  color: $color-muted;
+}

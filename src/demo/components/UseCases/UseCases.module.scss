@@ -1,0 +1,43 @@
+@use "../../../styles/variables" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $spacing-md;
+}
+
+.action {
+  grid-column: span 4;
+  border: 1px solid $color-border;
+  background: $color-surface;
+  color: $color-text;
+  border-radius: $radius-md;
+  padding: 14px 16px;
+  min-height: 56px;
+  text-align: left;
+  font-weight: 700;
+  cursor: pointer;
+  transition: $transition-default;
+}
+
+.action:hover:not(:disabled) {
+  background: $color-surface2;
+  transform: translateY(-1px);
+}
+
+.action:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+@media (max-width: 980px) {
+  .action {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 680px) {
+  .action {
+    grid-column: span 12;
+  }
+}
