@@ -18,13 +18,14 @@ export default function App() {
 
   return (
     <>
-      <h1>Demo eCommerce</h1>
+      <h1 data-cy="demo-title">Demo eCommerce</h1>
 
-      <div style={{ display: 'flex', gap: 12 }}>
-        <button onClick={() => addItem(products[0])} type="button">
+      <div data-cy="product-actions" style={{ display: 'flex', gap: 12 }}>
+        <button data-cy="add-to-cart-apple" onClick={() => addItem(products[0])} type="button">
           Add Apple
         </button>
-        <button onClick={() => addItem(products[1], 2)} type="button">
+
+        <button data-cy="add-to-cart-banana" onClick={() => addItem(products[1], 2)} type="button">
           Add 2 Bananas
         </button>
       </div>
