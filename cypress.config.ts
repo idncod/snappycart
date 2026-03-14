@@ -2,18 +2,20 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   allowCypressEnv: false,
-
   e2e: {
-    setupNodeEvents(_on, _config) {
-      return _config;
+    baseUrl: process.env.CYPRESS_BASE_URL || "http://localhost:5173",
+    specPattern: "cypress/e2e/**/*.cy.{ts,tsx}",
+    supportFile: "cypress/support/e2e.ts",
+    setupNodeEvents(_on, config) {
+      return config;
     },
   },
-
   component: {
+    specPattern: "src/**/*.cy.{ts,tsx}",
     supportFile: "cypress/support/component.ts",
     devServer: {
-      framework: "next",
-      bundler: "webpack",
+      framework: "react",
+      bundler: "vite",
     },
   },
 });

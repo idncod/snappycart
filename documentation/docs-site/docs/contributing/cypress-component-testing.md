@@ -6,7 +6,13 @@ title: Cypress Component Testing
 
 SnappyCart is a UI library. The fastest, least flaky way to improve quality is Cypress Component Testing: we mount a component in a real browser DOM and assert behaviour.
 
+<<<<<<< Updated upstream
 For CartDrawer, we start with behaviour that does not require seeding items:
+=======
+For the full test inventory and the recommended number of tests across all layers, read the [Cart testing plan](./cart-testing-plan.md).
+
+For `CartDrawer`, we start with behaviour that does not require seeding items:
+>>>>>>> Stashed changes
 
 - It does not render when `open=false`
 - It shows the empty state when the cart is empty
@@ -20,12 +26,30 @@ We use `data-cy` as a stable contract for tests. Do not select by CSS classes.
 
 Core selectors:
 
+<<<<<<< Updated upstream
 - `cart-drawer`, `cart-overlay`, `cart-title`, `cart-close`
 - `cart-empty`, `cart-subtotal`, `cart-clear`
 
 Per-item selectors (when we add item-seeding later):
 
 - `cart-item-<id>`, `cart-inc-<id>`, `cart-dec-<id>`, `cart-qty-value-<id>`, `cart-remove-<id>`
+=======
+- `cart-drawer`
+- `cart-overlay`
+- `cart-title`
+- `cart-close`
+- `cart-empty`
+- `cart-subtotal`
+- `cart-clear`
+
+Per-item selectors when we add item-seeding later:
+
+- `cart-item-`
+- `cart-inc-`
+- `cart-dec-`
+- `cart-qty-value-`
+- `cart-remove-`
+>>>>>>> Stashed changes
 
 ## Starter spec
 
@@ -36,24 +60,40 @@ Create this file:
 ```tsx
 import React from 'react';
 import CartDrawer from '../../src/cart/components/CartDrawer';
+<<<<<<< Updated upstream
 import { CartProvider } from '../../src/cart/context/CartProvider';
 
 const sel = (id: string) => `[data-cy="${id}"]`;
 
 function mountDrawer(params?: { open?: boolean; onClose?: () => void }) {
+=======
+import {CartProvider} from '../../src/cart/context/CartProvider';
+
+const sel = (id: string) => `[data-cy="${id}"]`;
+
+function mountDrawer(params?: {open?: boolean; onClose?: () => void}) {
+>>>>>>> Stashed changes
   const open = params?.open ?? true;
   const onClose = params?.onClose ?? (() => {});
 
   cy.mount(
     <CartProvider>
       <CartDrawer open={open} onClose={onClose} />
+<<<<<<< Updated upstream
     </CartProvider>
+=======
+    </CartProvider>,
+>>>>>>> Stashed changes
   );
 }
 
 describe('CartDrawer (CT)', () => {
   it('does not render when closed', () => {
+<<<<<<< Updated upstream
     mountDrawer({ open: false });
+=======
+    mountDrawer({open: false});
+>>>>>>> Stashed changes
 
     cy.get('body').then(($body) => {
       expect($body.find(sel('cart-drawer'))).to.have.length(0);
@@ -61,21 +101,33 @@ describe('CartDrawer (CT)', () => {
   });
 
   it('renders empty state when there are no items', () => {
+<<<<<<< Updated upstream
     mountDrawer({ open: true });
+=======
+    mountDrawer({open: true});
+>>>>>>> Stashed changes
 
     cy.get(sel('cart-empty')).should('be.visible');
     cy.get(sel('cart-title')).should('contain', '(0)');
   });
 
   it('focuses the Close button on open', () => {
+<<<<<<< Updated upstream
     mountDrawer({ open: true });
 
+=======
+    mountDrawer({open: true});
+>>>>>>> Stashed changes
     cy.get(sel('cart-close')).should('be.focused');
   });
 
   it('calls onClose when pressing Escape', () => {
     const onClose = cy.stub().as('onClose');
+<<<<<<< Updated upstream
     mountDrawer({ open: true, onClose });
+=======
+    mountDrawer({open: true, onClose});
+>>>>>>> Stashed changes
 
     cy.get('body').type('{esc}');
     cy.get('@onClose').should('have.been.called');
@@ -83,9 +135,15 @@ describe('CartDrawer (CT)', () => {
 
   it('calls onClose when clicking the overlay', () => {
     const onClose = cy.stub().as('onClose');
+<<<<<<< Updated upstream
     mountDrawer({ open: true, onClose });
 
     cy.get(sel('cart-overlay')).click({ force: true });
+=======
+    mountDrawer({open: true, onClose});
+
+    cy.get(sel('cart-overlay')).click({force: true});
+>>>>>>> Stashed changes
     cy.get('@onClose').should('have.been.called');
   });
 });
@@ -99,20 +157,38 @@ If Cypress Component Testing is already scaffolded in the repo:
 npx cypress open --component
 ```
 
+<<<<<<< Updated upstream
 Headless (CI style):
+=======
+Headless:
+>>>>>>> Stashed changes
 
 ```bash
 npx cypress run --component --spec cypress/component/CartDrawer.cy.tsx
 ```
 
+<<<<<<< Updated upstream
 If you do not have `cy.mount` yet, run the interactive setup once. Cypress will generate the support files (including the `cy.mount` command).
 
 ## Why this is also “component integration testing”
 
 Even though we call it a component test, we mount `CartDrawer` with `CartProvider` and the real `useCart` hook. That means we are testing interaction between UI, hooks, and state, not just a single function.
+=======
+If you do not have `cy.mount` yet, run the interactive setup once.
+Cypress will generate the support files, including the `cy.mount` command.
+
+## Why this is also component integration testing
+
+Even though we call it a component test, we mount `CartDrawer` with `CartProvider` and the real `useCart` hook.
+That means we are testing interaction between UI, hooks, and state, not just a single function.
+>>>>>>> Stashed changes
 
 ## Contribution workflow
 
 - One issue = one test
+<<<<<<< Updated upstream
 - One PR = one focused test (plus selector additions if needed)
+=======
+- One PR = one focused test plus selector additions if needed
+>>>>>>> Stashed changes
 - Keep tests stable with `data-cy`
