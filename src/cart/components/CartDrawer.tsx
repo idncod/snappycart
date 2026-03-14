@@ -122,7 +122,6 @@ export default function CartDrawer({
                     data-cy={`cart-remove-${String(li.product.id)}`}
                     type="button"
                     className="sc-remove"
-                    data-cy={`cart-remove-${String(li.product.id)}`}
                     onClick={() => removeItem(li.product.id)}
                   >
                     Remove
