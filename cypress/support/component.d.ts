@@ -1,11 +1,9 @@
-import type { mount } from 'cypress/react'
+/// <reference types="cypress" />
 
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      mount: typeof mount
+type MountFn = typeof import('cypress/react').mount
+
+declare namespace Cypress {
+    interface Chainable<Subject = any> {
+        mount: MountFn
     }
-  }
 }
-
-export {}

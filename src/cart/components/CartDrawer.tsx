@@ -33,41 +33,77 @@ export default function CartDrawer({
 
   return (
     <>
-      <div className="sc-overlay" onClick={onClose} />
-      <aside className="sc-drawer" role="dialog" aria-modal="true" aria-label={title}>
-        <header className="sc-drawer-header">
-          <h3 className="sc-drawer-title">
+      <div className="sc-overlay" data-cy="cart-overlay" onClick={onClose} />
+      <aside
+        className="sc-drawer"
+        data-cy="cart-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+      >
+        <header className="sc-drawer-header" data-cy="cart-header">
+          <h3 className="sc-drawer-title" data-cy="cart-title">
             {title} ({totalItems})
           </h3>
-          <button ref={closeRef} className="sc-close" onClick={onClose} type="button">
+          <button
+            ref={closeRef}
+            className="sc-close"
+            data-cy="cart-close"
+            onClick={onClose}
+            type="button"
+          >
             Close
           </button>
         </header>
 
-        <div className="sc-drawer-body">
+        <div className="sc-drawer-body" data-cy="cart-body">
           {items.length === 0 ? (
-            <p>Your cart is empty.</p>
+            <p data-cy="cart-empty">Your cart is empty.</p>
           ) : (
             items.map((li) => (
-              <div className="sc-item" key={String(li.product.id)}>
+              <div
+                className="sc-item"
+                data-cy={`cart-item-${String(li.product.id)}`}
+                key={String(li.product.id)}
+              >
                 {li.product.imageUrl ? (
-                  <img className="sc-item-img" src={li.product.imageUrl} alt={li.product.name} />
+                  <img
+                    className="sc-item-img"
+                    src={li.product.imageUrl}
+                    alt={li.product.name}
+                    data-cy={`cart-img-${String(li.product.id)}`}
+                  />
                 ) : (
-                  <div className="sc-item-img" />
+                  <div className="sc-item-img" data-cy={`cart-img-${String(li.product.id)}`} />
                 )}
 
-                <div>
-                  <div className="sc-item-name">{li.product.name}</div>
-                  <div className="sc-item-price">{formatMoney(li.product.price)}</div>
+                <div data-cy={`cart-meta-${String(li.product.id)}`}>
+                  <div className="sc-item-name" data-cy={`cart-name-${String(li.product.id)}`}>
+                    {li.product.name}
+                  </div>
+                  <div className="sc-item-price" data-cy={`cart-price-${String(li.product.id)}`}>
+                    {formatMoney(li.product.price)}
+                  </div>
                 </div>
 
-                <div className="sc-item-controls">
-                  <div className="sc-qty">
-                    <button type="button" onClick={() => decrement(li.product.id)}>
+                <div
+                  className="sc-item-controls"
+                  data-cy={`cart-controls-${String(li.product.id)}`}
+                >
+                  <div className="sc-qty" data-cy={`cart-qty-${String(li.product.id)}`}>
+                    <button
+                      type="button"
+                      data-cy={`cart-dec-${String(li.product.id)}`}
+                      onClick={() => decrement(li.product.id)}
+                    >
                       -
                     </button>
-                    <span>{li.quantity}</span>
-                    <button type="button" onClick={() => increment(li.product.id)}>
+                    <span data-cy={`cart-qty-value-${String(li.product.id)}`}>{li.quantity}</span>
+                    <button
+                      type="button"
+                      data-cy={`cart-inc-${String(li.product.id)}`}
+                      onClick={() => increment(li.product.id)}
+                    >
                       +
                     </button>
                   </div>
@@ -75,6 +111,7 @@ export default function CartDrawer({
                   <button
                     type="button"
                     className="sc-remove"
+                    data-cy={`cart-remove-${String(li.product.id)}`}
                     onClick={() => removeItem(li.product.id)}
                   >
                     Remove
@@ -85,14 +122,14 @@ export default function CartDrawer({
           )}
         </div>
 
-        <footer className="sc-footer">
-          <div className="sc-row">
-            <span>Subtotal</span>
-            <span>{formatMoney(subtotal)}</span>
+        <footer className="sc-footer" data-cy="cart-footer">
+          <div className="sc-row" data-cy="cart-subtotal">
+            <span data-cy="cart-subtotal-label">Subtotal</span>
+            <span data-cy="cart-subtotal-value">{formatMoney(subtotal)}</span>
           </div>
 
           {items.length > 0 && (
-            <button type="button" className="sc-clear" onClick={clear}>
+            <button type="button" className="sc-clear" data-cy="cart-clear" onClick={clear}>
               Clear cart
             </button>
           )}

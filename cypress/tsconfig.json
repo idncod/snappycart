@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["cypress", "node"],
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true
+  },
+  "files": ["./support/component.d.ts"],
+  "include": ["./**/*.ts", "./**/*.tsx", "./**/*.d.ts", "../src/**/*.cy.ts", "../src/**/*.cy.tsx"]
+}
