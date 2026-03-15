@@ -16,9 +16,16 @@ export default function CartIcon({ position = 'bottom-right', onClick }: CartIco
         : 'sc-bottom-right';
 
   return (
-    <button type="button" className={`sc-cart-button ${posClass}`} onClick={onClick}>
+    <button
+      data-cy="cart-icon"
+      type="button"
+      className={`sc-cart-button ${posClass}`}
+      onClick={onClick}
+    >
       Cart
-      <span className="sc-cart-badge">{totalItems}</span>
+      <span data-cy="cart-badge" className="sc-cart-badge">
+        {totalItems}
+      </span>
     </button>
   );
 }
