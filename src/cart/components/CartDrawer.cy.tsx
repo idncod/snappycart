@@ -24,8 +24,8 @@ describe('CartDrawer (CT)', () => {
   it('renders empty state when there are no items', () => {
     mountDrawer({ open: true });
 
-    cy.get(sel('cart-empty')).should('be.visible');
-    cy.get(sel('cart-title')).should('contain', '(0)');
+    cy.get(sel('cart-drawer-title')).should('be.visible');
+    cy.get(sel('cart-drawer-title')).should('contain', '(0)');
   });
 
   it('focuses the Close button on open', () => {
