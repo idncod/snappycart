@@ -6,7 +6,9 @@ title: Cypress Component Testing
 
 SnappyCart is a UI library. The fastest, least flaky way to improve quality is Cypress Component Testing: we mount a component in a real browser DOM and assert behaviour.
 
-For CartDrawer, we start with behaviour that does not require seeding items:
+For the full test inventory and the recommended number of tests across all layers, read the [Cart testing plan](./cart-testing-plan.md).
+
+For `CartDrawer`, we start with behaviour that does not require seeding items:
 
 - It does not render when `open=false`
 - It shows the empty state when the cart is empty
@@ -20,12 +22,21 @@ We use `data-cy` as a stable contract for tests. Do not select by CSS classes.
 
 Core selectors:
 
-- `cart-drawer`, `cart-overlay`, `cart-title`, `cart-close`
-- `cart-empty`, `cart-subtotal`, `cart-clear`
+- `cart-drawer`
+- `cart-overlay`
+- `cart-title`
+- `cart-close`
+- `cart-empty`
+- `cart-subtotal`
+- `cart-clear`
 
-Per-item selectors (when we add item-seeding later):
+Per-item selectors when we add item-seeding later:
 
-- `cart-item-<id>`, `cart-inc-<id>`, `cart-dec-<id>`, `cart-qty-value-<id>`, `cart-remove-<id>`
+- `cart-item-`
+- `cart-inc-`
+- `cart-dec-`
+- `cart-qty-value-`
+- `cart-remove-`
 
 ## Starter spec
 
@@ -89,30 +100,3 @@ describe('CartDrawer (CT)', () => {
     cy.get('@onClose').should('have.been.called');
   });
 });
-```
-
-## Running the tests
-
-If Cypress Component Testing is already scaffolded in the repo:
-
-```bash
-npx cypress open --component
-```
-
-Headless (CI style):
-
-```bash
-npx cypress run --component --spec cypress/component/CartDrawer.cy.tsx
-```
-
-If you do not have `cy.mount` yet, run the interactive setup once. Cypress will generate the support files (including the `cy.mount` command).
-
-## Why this is also “component integration testing”
-
-Even though we call it a component test, we mount `CartDrawer` with `CartProvider` and the real `useCart` hook. That means we are testing interaction between UI, hooks, and state, not just a single function.
-
-## Contribution workflow
-
-- One issue = one test
-- One PR = one focused test (plus selector additions if needed)
-- Keep tests stable with `data-cy`
