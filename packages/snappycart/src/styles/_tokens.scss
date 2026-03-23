@@ -1,0 +1,103 @@
+$sc-color-bg: #0b0d12;
+$sc-color-text: rgba(255, 255, 255, 0.92);
+$sc-color-muted: rgba(255, 255, 255, 0.62);
+$sc-color-border: rgba(255, 255, 255, 0.12);
+$sc-color-surface: rgba(255, 255, 255, 0.06);
+$sc-color-surface-2: rgba(255, 255, 255, 0.1);
+$sc-color-primary: #7c5cff;
+$sc-color-accent: #a6b1ff;
+$sc-color-success: #2bd4a6;
+$sc-color-danger: #ff4d6d;
+$sc-color-overlay: rgba(5, 8, 14, 0.58);
+
+$sc-font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+$sc-font-size-xs: 0.75rem;
+$sc-font-size-sm: 0.875rem;
+$sc-font-size-base: 1rem;
+$sc-font-size-lg: 1.125rem;
+$sc-font-size-xl: 1.25rem;
+$sc-font-weight-normal: 400;
+$sc-font-weight-medium: 500;
+$sc-font-weight-semibold: 600;
+$sc-line-height: 1.4;
+
+$sc-spacing-2xs: 0.125rem;
+$sc-spacing-xs: 0.25rem;
+$sc-spacing-sm: 0.5rem;
+$sc-spacing-md: 1rem;
+$sc-spacing-lg: 1.5rem;
+$sc-spacing-xl: 2rem;
+
+$sc-radius-sm: 6px;
+$sc-radius-md: 12px;
+$sc-radius-lg: 20px;
+$sc-radius-xl: 28px;
+$sc-radius-pill: 999px;
+
+$sc-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.18);
+$sc-shadow-md: 0 8px 22px rgba(0, 0, 0, 0.26);
+$sc-shadow-lg: 0 16px 44px rgba(0, 0, 0, 0.34);
+
+$sc-blur-sm: 10px;
+$sc-blur-md: 16px;
+
+$sc-transition-fast: 0.18s ease;
+$sc-transition-default: 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+$sc-transition-slow: 0.34s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+$sc-z-index-header: 1000;
+$sc-z-index-drawer: 1100;
+$sc-z-index-modal: 1200;
+
+@mixin snappycart-theme-tokens {
+  --snappycart-color-bg: #{$sc-color-bg};
+  --snappycart-color-text: #{$sc-color-text};
+  --snappycart-color-muted: #{$sc-color-muted};
+  --snappycart-color-border: #{$sc-color-border};
+  --snappycart-color-surface: #{$sc-color-surface};
+  --snappycart-color-surface-2: #{$sc-color-surface-2};
+  --snappycart-color-primary: #{$sc-color-primary};
+  --snappycart-color-accent: #{$sc-color-accent};
+  --snappycart-color-success: #{$sc-color-success};
+  --snappycart-color-danger: #{$sc-color-danger};
+  --snappycart-color-overlay: #{$sc-color-overlay};
+
+  --snappycart-font-family: #{$sc-font-family};
+  --snappycart-font-size-xs: #{$sc-font-size-xs};
+  --snappycart-font-size-sm: #{$sc-font-size-sm};
+  --snappycart-font-size-base: #{$sc-font-size-base};
+  --snappycart-font-size-lg: #{$sc-font-size-lg};
+  --snappycart-font-size-xl: #{$sc-font-size-xl};
+  --snappycart-font-weight-normal: #{$sc-font-weight-normal};
+  --snappycart-font-weight-medium: #{$sc-font-weight-medium};
+  --snappycart-font-weight-semibold: #{$sc-font-weight-semibold};
+  --snappycart-line-height: #{$sc-line-height};
+
+  --snappycart-spacing-2xs: #{$sc-spacing-2xs};
+  --snappycart-spacing-xs: #{$sc-spacing-xs};
+  --snappycart-spacing-sm: #{$sc-spacing-sm};
+  --snappycart-spacing-md: #{$sc-spacing-md};
+  --snappycart-spacing-lg: #{$sc-spacing-lg};
+  --snappycart-spacing-xl: #{$sc-spacing-xl};
+
+  --snappycart-radius-sm: #{$sc-radius-sm};
+  --snappycart-radius-md: #{$sc-radius-md};
+  --snappycart-radius-lg: #{$sc-radius-lg};
+  --snappycart-radius-xl: #{$sc-radius-xl};
+  --snappycart-radius-pill: #{$sc-radius-pill};
+
+  --snappycart-shadow-sm: #{$sc-shadow-sm};
+  --snappycart-shadow-md: #{$sc-shadow-md};
+  --snappycart-shadow-lg: #{$sc-shadow-lg};
+
+  --snappycart-blur-sm: #{$sc-blur-sm};
+  --snappycart-blur-md: #{$sc-blur-md};
+
+  --snappycart-transition-fast: #{$sc-transition-fast};
+  --snappycart-transition-default: #{$sc-transition-default};
+  --snappycart-transition-slow: #{$sc-transition-slow};
+
+  --snappycart-z-index-header: #{$sc-z-index-header};
+  --snappycart-z-index-drawer: #{$sc-z-index-drawer};
+  --snappycart-z-index-modal: #{$sc-z-index-modal};
+}

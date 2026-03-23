@@ -1,0 +1,56 @@
+@use "./styles/variables" as *;
+
+:root {
+  --text: #{$color-text};
+  --muted: #{$color-muted};
+  --border: #{$color-border};
+  --surface: #{$color-surface};
+  --surface2: #{$color-surface2};
+  --radius: #{$radius-md};
+  --radius-sm: #{$radius-sm};
+  --shadow: #{$shadow-md};
+  --gap: #{$spacing-md};
+  --max: 1120px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+          radial-gradient(1200px 700px at 20% -10%, rgba(124, 92, 255, 0.22), transparent 60%),
+          radial-gradient(1000px 700px at 85% 0%, rgba(166, 177, 255, 0.14), transparent 55%),
+          #0b0d12;
+  color: $color-text;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.4;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}

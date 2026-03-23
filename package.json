@@ -1,69 +1,24 @@
 {
-  "name": "snappycart",
-  "private": false,
-  "version": "1.1.0",
-  "type": "module",
-  "description": "A lightweight, embeddable React cart component with context support",
-  "module": "dist/index.js",
-  "main": "dist/index.cjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./styles.css": "./dist/styles.css"
-  },
-  "sideEffects": [
-    "./dist/styles.css"
+  "name": "snappycart-workspace",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
   ],
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "keywords": [
-    "react",
-    "cart",
-    "shopping",
-    "context",
-    "checkout"
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/idncod/snappycart"
-  },
   "scripts": {
-    "dev": "vite",
-    "build:demo": "tsc -b && vite build",
-    "build:lib": "tsup src/index.ts --format esm,cjs --dts --clean --tsconfig tsconfig.tsup.json",
-    "build:styles": "sass src/cart/components/snappycart.scss dist/styles.css --no-source-map",
-    "build": "npm run build:lib && npm run build:styles",
-    "preview": "vite preview",
-    "lint": "eslint . --ext .ts,.tsx",
-    "test": "vitest",
-    "test:ct": "cypress run --component",
-    "test:ct:open": "cypress open --component",
-    "test:e2e": "cypress run --e2e",
-    "test:e2e:open": "cypress open --e2e",
-    "test:pwct": "playwright test -c playwright-ct.config.ts",
-    "prepare": "husky",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm test --workspace=snappycart",
+    "dev:demo": "npm run dev --workspace=demo",
+    "dev:docs": "npm run dev --workspace=documentation",
+    "build:package": "npm run build --workspace=snappycart",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "changeset publish",
-    "prepublishOnly": "npm run test && npm run build",
-    "test-ct": "playwright test -c playwright-ct.config.ts"
-  },
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
-  },
-  "dependencies": {
-    "classnames": "^2.5.1",
-    "cypress": "^15.10.0",
-    "snappycart": "^1.1.2"
+    "test:cypress": "cypress run",
+    "test:cypress:component": "cypress run --component",
+    "test:cypress:e2e": "cypress run --e2e",
+    "test:playwright": "playwright test",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
@@ -72,30 +27,24 @@
     "@eslint/js": "^9.21.0",
     "@playwright/experimental-ct-react": "^1.58.2",
     "@playwright/test": "^1.58.2",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.3.0",
-    "@types/jest": "^29.5.14",
     "@types/node": "^25.3.3",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.1",
-    "@vitejs/plugin-react": "^4.3.4",
+    "cypress": "^15.10.0",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
     "husky": "^9.1.7",
-    "jsdom": "^26.0.0",
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
-    "sass": "^1.86.3",
-    "tsup": "^8.5.1",
     "typescript": "~5.7.2",
-    "typescript-eslint": "^8.24.1",
-    "vite": "^6.2.0",
-    "vitest": "^3.1.1"
+    "typescript-eslint": "^8.24.1"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,js}": [
+    "packages/snappycart/src/**/*.{ts,tsx,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "apps/**/*.{ts,tsx,js}": [
       "eslint --fix",
       "prettier --write"
     ]
