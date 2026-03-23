@@ -1,0 +1,21 @@
+.wrap {
+  display: grid;
+  gap: 14px;
+}
+
+.status {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.error {
+  border-color: rgba(255, 77, 109, 0.28);
+}
+
+.note {
+  font-size: 13px;
+  color: var(--muted);
+}

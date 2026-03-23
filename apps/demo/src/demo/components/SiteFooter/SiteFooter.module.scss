@@ -1,0 +1,28 @@
+.footer {
+  border-top: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.inner {
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto;
+  padding: 18px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-weight: 750;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.left {
+  display: grid;
+  gap: 4px;
+}

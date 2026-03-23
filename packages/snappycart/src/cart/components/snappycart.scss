@@ -1,0 +1,158 @@
+@use "../../styles/tokens" as *;
+
+:where(.snappycart, .snappycart-drawer, .snappycart-cart-icon) {
+  @include snappycart-theme-tokens;
+}
+
+:where(.snappycart, .snappycart-drawer, .snappycart-cart-icon) {
+  color: var(--snappycart-color-text);
+  font-family: var(--snappycart-font-family);
+  line-height: var(--snappycart-line-height);
+}
+
+.snappycart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: var(--snappycart-z-index-drawer);
+  width: min(420px, 100vw);
+  height: 100dvh;
+  padding: var(--snappycart-spacing-lg);
+  background: var(--snappycart-color-bg);
+  border-left: 1px solid var(--snappycart-color-border);
+  box-shadow: var(--snappycart-shadow-lg);
+  transition: transform var(--snappycart-transition-default);
+}
+
+.snappycart-panel {
+  background: var(--snappycart-color-surface);
+  border: 1px solid var(--snappycart-color-border);
+  border-radius: var(--snappycart-radius-lg);
+  box-shadow: var(--snappycart-shadow-md);
+  backdrop-filter: blur(var(--snappycart-blur-md));
+}
+
+.snappycart-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--snappycart-spacing-xs);
+  min-height: 44px;
+  padding: 0 var(--snappycart-spacing-md);
+  border: 1px solid transparent;
+  border-radius: var(--snappycart-radius-pill);
+  background: var(--snappycart-color-primary);
+  color: #fff;
+  font-size: var(--snappycart-font-size-sm);
+  font-weight: var(--snappycart-font-weight-semibold);
+  transition:
+          background var(--snappycart-transition-fast),
+          transform var(--snappycart-transition-fast),
+          box-shadow var(--snappycart-transition-fast);
+  cursor: pointer;
+}
+
+.snappycart-button:hover {
+  box-shadow: var(--snappycart-shadow-md);
+  transform: translateY(-1px);
+}
+
+.snappycart-button:focus-visible {
+  outline: 2px solid var(--snappycart-color-accent);
+  outline-offset: 2px;
+}
+
+.snappycart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 var(--snappycart-spacing-xs);
+  border-radius: var(--snappycart-radius-pill);
+  background: var(--snappycart-color-danger);
+  color: #fff;
+  font-size: var(--snappycart-font-size-xs);
+  font-weight: var(--snappycart-font-weight-semibold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snappycart-button,
+  .snappycart-drawer {
+    transition: none;
+  }
+}
+
+.snappycart-cart-icon {
+  @include snappycart-theme-tokens;
+  position: fixed;
+  z-index: var(--snappycart-z-index-drawer);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--snappycart-spacing-xs);
+  min-height: 48px;
+  padding: 0 var(--snappycart-spacing-md);
+  border: 1px solid var(--snappycart-color-border);
+  border-radius: var(--snappycart-radius-pill);
+  background: color-mix(in srgb, var(--snappycart-color-surface-2) 78%, transparent);
+  color: var(--snappycart-color-text);
+  box-shadow: var(--snappycart-shadow-md);
+  backdrop-filter: blur(var(--snappycart-blur-md));
+  font-family: var(--snappycart-font-family);
+  font-size: var(--snappycart-font-size-sm);
+  font-weight: var(--snappycart-font-weight-semibold);
+  cursor: pointer;
+  transition:
+          transform var(--snappycart-transition-fast),
+          box-shadow var(--snappycart-transition-fast),
+          border-color var(--snappycart-transition-fast),
+          background var(--snappycart-transition-fast);
+}
+
+.snappycart-cart-icon:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--snappycart-color-accent) 45%, var(--snappycart-color-border));
+  box-shadow: var(--snappycart-shadow-lg);
+}
+
+.snappycart-cart-icon:focus-visible {
+  outline: 2px solid var(--snappycart-color-accent);
+  outline-offset: 3px;
+}
+
+.snappycart-cart-icon--bottom-right {
+  right: var(--snappycart-spacing-lg);
+  bottom: var(--snappycart-spacing-lg);
+}
+
+.snappycart-cart-icon--top-right {
+  top: var(--snappycart-spacing-lg);
+  right: var(--snappycart-spacing-lg);
+}
+
+.snappycart-cart-icon--inline {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  top: auto;
+}
+
+.snappycart-cart-icon__label {
+  white-space: nowrap;
+}
+
+.snappycart-cart-icon__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 var(--snappycart-spacing-xs);
+  border-radius: var(--snappycart-radius-pill);
+  background: var(--snappycart-color-primary);
+  color: #fff;
+  font-size: var(--snappycart-font-size-xs);
+  font-weight: var(--snappycart-font-weight-semibold);
+  line-height: 1;
+}

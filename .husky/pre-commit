@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx lint-staged
-npx vitest run --silent
+npm test --workspace=snappycart

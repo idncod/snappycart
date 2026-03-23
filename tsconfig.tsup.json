@@ -1,7 +1,0 @@
-{
-  "extends": "./tsconfig.app.json",
-  "compilerOptions": {
-    "noEmit": false
-  },
-  "include": ["src/index.ts", "src/**/*.ts", "src/**/*.tsx"]
-}

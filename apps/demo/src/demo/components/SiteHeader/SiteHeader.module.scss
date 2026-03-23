@@ -1,0 +1,89 @@
+@use "../../../styles/variables" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-index-header;
+  background: rgba(11, 13, 18, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.inner {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: radial-gradient(circle at 30% 30%, rgba(166, 177, 255, 0.95), rgba(124, 92, 255, 0.9));
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  flex: none;
+}
+
+.brand {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: $color-text;
+}
+
+.sub {
+  font-size: 12px;
+  color: $color-muted;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.link {
+  font-size: 14px;
+  color: $color-muted;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: $transition-default;
+}
+
+.link:hover {
+  color: $color-text;
+  background: rgba(255, 255, 255, 0.04);
+  border-color: $color-border;
+}
+
+.cta {
+  border: 1px solid $color-border;
+  background: $color-surface;
+  color: $color-text;
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: $transition-default;
+}
+
+.cta:hover {
+  background: $color-surface2;
+}
