@@ -1,5 +1,0 @@
----
-'snappycart': patch
----
-
-Removeredundant button

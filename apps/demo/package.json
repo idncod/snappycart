@@ -1,7 +1,7 @@
 {
   "name": "demo",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
   "dependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "snappycart": "^1.1.0"
+    "snappycart": "^2.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.16",
