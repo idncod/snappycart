@@ -12,7 +12,7 @@
   "dependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "snappycart": "^2.0.0"
+    "snappycart": "*"
   },
   "devDependencies": {
     "@types/react": "^19.1.16",

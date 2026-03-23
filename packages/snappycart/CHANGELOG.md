@@ -1,32 +1,28 @@
 # snappycart
 
-## 2.0.0
+## 1.2.0
 
-### Major Changes
+### Highlights
 
-- cd78947: New landing page with docs for snappycart.
+- Improved SnappyCart’s package structure and developer experience by separating the npm package from the demo and docs apps, refining exports, styling, and local integration workflows.
+- Added cart UI components and packaged styles export.
+- Updated the demo app to use the SnappyCart library API.
+- Fixed packaging, exports, and shipped compiled styles.
+- Added a new landing page and documentation for SnappyCart.
 
-### Minor Changes
+### Tooling and testing
 
-- b10e610: Add test plan and Cypress tests.
+- Added a Cypress test starter.
+- Added a test plan and Cypress tests.
+- Added the first Playwright test for CartDrawer.
+- Added a Playwright end-to-end test for cart add item.
+- Fixed Cypress test selectors.
+- Cleaned up Playwright installation.
 
-### Patch Changes
+### Documentation and maintenance
 
-- cfceaf7: Add Playwright e2e test for cart add item
-- 2b8244c: Add MIT license file
-- 6c803cc: Fix test selector for Cypress.
-- 6c803cc: Fix test selector for Cypress.
-- 841c7d8: Removeredundant button
-- 0e35db8: Update hyphen in a README.
-- 6aa4373: Add a cypress test starter.
-- 370674a: Fix packaging, exports, and ship styles
-- f46719b: Improve Snappycart's package structure and developer experience by separating the npm package from the demo and docs apps, refining exports, styling, and local integration workflows.
-- 43cb31b: Update readme with new snappycart logo.
-- a5118ac: Update README with helpful information and resources.
-- 347e4a2: Created first playwright test for CartDrawer.
-- b234e42: update demo app to use SnappyCart library API.
-- 1c99cb1: Add cart UI components and packaged styles export.
-- da76b22: edit the core api with reducer, provider, and types
-- 3d46a27: Clean Playwright install.
-- 1559e4b: Add Cypress installation.
-- ef52cfa: Remove dot from README.
+- Added the MIT license file.
+- Updated the README with helpful information and resources.
+- Updated the README with the new SnappyCart logo.
+- Removed a redundant button.
+- Fixed minor README wording and punctuation.
