@@ -1,30 +1,38 @@
-[![SnappyCart](https://img.shields.io/badge/SnappyCart-snappycart.idncod.com-F97316.svg?labelColor=111827)](https://snappycart.idncod.com/) [![License](https://img.shields.io/badge/license-MIT-F97316.svg?labelColor=111827)](./LICENSE) [![npm](https://img.shields.io/npm/v/snappycart.svg?label=npm&color=F97316&labelColor=111827)](https://www.npmjs.com/package/snappycart) [![Build and Test](https://github.com/idncod/snappycart/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/idncod/snappycart/actions/workflows/ci.yml) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-22C55E.svg?labelColor=111827)](./CONTRIBUTING.md) [![Conventional Commits](https://img.shields.io/badge/commits-conventional-22C55E.svg?labelColor=111827)](https://www.conventionalcommits.org/)
+[![snappycart](https://img.shields.io/badge/SnappyCart-snappycart.idncod.com-F97316.svg?labelColor=111827)](https://snappycart.idncod.com/) [![License](https://img.shields.io/badge/license-MIT-F97316.svg?labelColor=111827)](./LICENSE) [![npm](https://img.shields.io/npm/v/snappycart.svg?label=npm&color=F97316&labelColor=111827)](https://www.npmjs.com/package/snappycart) [![Build and Test](https://github.com/idncod/snappycart/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/idncod/snappycart/actions/workflows/ci.yml) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-22C55E.svg?labelColor=111827)](./CONTRIBUTING.md) [![Conventional Commits](https://img.shields.io/badge/commits-conventional-22C55E.svg?labelColor=111827)](https://www.conventionalcommits.org/)
 
 ![snappycart demo preview](snappycart_by_viola_lykova_realease_2026.png)
 
- # Snappycart <img src="https://raw.githubusercontent.com/idncod/snappycart/841c7d80ecdf3f21b2f4a5ba2300ee26dc919101/documentation/docs-site/static/img/snappycart_logo.svg" alt="Snappycart logo" height="40" >
+[Documentation](https://snappycart.idncod.com/docs) · [npm package](https://www.npmjs.com/package/snappycart) · [Quick start](#quick-start) · [Core exports](#core-exports) · [Contributing](./CONTRIBUTING.md)
 
-**snappycart** is a modern, headless React cart system designed for plug-and-play use in any React app.
+# snappycart <img src="https://raw.githubusercontent.com/idncod/snappycart/841c7d80ecdf3f21b2f4a5ba2300ee26dc919101/documentation/docs-site/static/img/snappycart_logo.svg" alt="snappycart logo" height="40" >
 
-It gives you the core cart engine plus optional UI components, so you can build your own cart experience without getting boxed into somebody else’s storefront assumptions.
+**snappycart** is a headless React cart package for teams that want full control over cart UX without building cart state from scratch.
 
----
 
-## Contents
-
-- [Why snappycart](#why-snappycart)
-- [Features](#features)
-- [Who it is for](#who-it-is-for)
-- [Installation](#installation)
-- [Quick start](#quick-start)
-- [Documentation](#documentation)
-- [Repository structure](#repository-structure)
-- [Contributing](#contributing)
-- [License](#license)
+It gives you the core cart engine, optional UI components, and a clean integration path, so you can move faster without getting locked into a heavy commerce platform.
 
 ---
 
-## Why SnappyCart?
+## Where to go next
+
+### New to snappycart?
+- [Why snappycart exists](#why-snappycart)
+- [What you get out of the box](#features)
+- [Who snappycart is built for](#who-it-is-for)
+
+### Ready to use it?
+- [Install the package](#installation)
+- [Build your first cart flow](#quick-start)
+- [Explore the docs](#documentation)
+- [See the core exports](#core-exports)
+
+### Want to work on the repo?
+- [Understand the repo structure](#repository-structure)
+- [Contribute](#contributing)
+- [Review the license](#license)
+---
+
+## Why snappycart?
 
 Most cart solutions are either too basic or too opinionated.
 
@@ -44,18 +52,27 @@ snappycart gives you the core cart engine and UI building blocks, so you can shi
 - React context and hook: `CartProvider`, `useCart`
 - optional UI components: `CartDrawer`, `CartIcon`
 - flexible product model with support for custom metadata
-- workspace monorepo with package, demo app, and documentation site
+- derived cart values like `totalItems` and `subtotal`
+
+## Core exports
+
+| Export | Type | Purpose |
+| --- | --- | --- |
+| `CartProvider` | Provider | Wraps your app with cart state |
+| `useCart` | Hook | Access cart actions and derived state |
+| `CartDrawer` | UI component | Optional ready-made cart drawer |
+| `CartIcon` | UI component | Optional cart trigger |
 
 ---
 
 ## Who it is for
 
-snappycart is mainly for:
-
-- **React developers** who want cart functionality without adopting a full commerce platform
-- **frontend engineers** who want to own the UI while reusing solid cart state logic
-- **teams building storefronts or product flows** that need a lightweight cart foundation
-- **contributors** who want to improve the package, tests, demo app, or docs
+| Audience | Why snappycart fits |
+| --- | --- |
+| React developers | Add cart functionality without adopting a full commerce platform |
+| Frontend engineers | Keep full control over UI while reusing solid cart state logic |
+| Product teams | Ship custom cart flows faster with a lightweight foundation |
+| Contributors | Improve the package, tests, demo app, or docs in an open repo |
 
 ---
 
@@ -162,33 +179,40 @@ export function CartSummary() {
  ---
 
 ## Documentation
-Docs live here:
+
+Explore the docs for setup, usage, and UI customization:
 
 [📂 Getting Started ⤴](https://snappycart.idncod.com/docs/intro)
 
 [📂 Theming ⤴](https://snappycart.idncod.com/docs/ui/theming)
 
-For deeper contribution guidance, testing expectations, and workflow details, see [CONTRIBUTING.md](./CONTRIBUTING.md)
+For contribution workflow and repository-specific guidance, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ---
 
 ## Repository structure
 This repository is a workspace monorepo. Not every folder matters to every contributor.
-![SnappyCart repository structure](repo-structure.png)
+![snappycart repository structure](repo-structure.png)
 
 ## Folder guide
-- 📂```packages/snappycart```
-The publishable npm package. This is the main folder for developers working on snappycart itself.
-- 📂```apps/demo```
-Demo app for testing and showcasing the package in a real UI.
-- 📂```apps/documentation```
-Documentation site source. Most package users do not need this folder.
-- 📂```cypress```
-Cypress testing setup and support files.
-- 📂```playwright```
-Playwright testing setup.
-- 📂```.github/workflows```
-CI and automation workflows.
+
+- `packages/snappycart`  
+  The publishable npm package. This is the main folder for developers working on snappycart itself.
+
+- `apps/demo`  
+  Demo app for testing and showcasing the package in a real UI.
+
+- `apps/documentation`  
+  Documentation site source. Most package users do not need this folder.
+
+- `cypress`  
+  Cypress testing setup and support files.
+
+- `playwright`  
+  Playwright testing setup.
+
+- `.github/workflows`  
+  CI and automation workflows.
 
 ```text
 snappycart/
@@ -211,21 +235,22 @@ snappycart/
 
 If you are using snappycart in your own app, the main thing you care about is:
 
-```📂packages/snappycart```
+`packages/snappycart`
 
 If you are contributing to docs, go to:
 
-```📂apps/documentation```
+`apps/documentation`
 
 If you are contributing tests, you will mostly care about:
 
-```cypress
-📂playwright
-📂packages/snappycart
-📂apps/demo
-```
+- `cypress`
+- `playwright`
+- `packages/snappycart`
+- `apps/demo`
 
-### Contributing
+---
+
+## Contributing
 snappycart is developed in the open, and contributions are welcome.
 
 You can contribute through:
@@ -258,7 +283,10 @@ npm run build
 
 You can then either work from the repo root with workspace commands, or move into a specific workspace and run that folder’s local scripts.
 
-### License
+---
+
+## License
+
 snappycart is [MIT licensed ↗](./LICENSE)
 
 ![snappycart demo preview](snappycart_peaking.png)
