@@ -18,7 +18,8 @@
     "test:cypress:component": "cypress run --component",
     "test:cypress:e2e": "cypress run --e2e",
     "test:playwright": "playwright test",
-    "prepare": "husky"
+    "prepare": "husky",
+    "sync:readme": "cp README.md packages/snappycart/README.md"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
