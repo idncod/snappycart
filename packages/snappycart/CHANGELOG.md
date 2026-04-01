@@ -1,5 +1,11 @@
 # snappycart
 
+## 1.2.1
+
+### Patch Changes
+
+- 3dd66df: Update security policy for snappycart & add contact info of the maintainer.
+
 ## 1.2.0
 
 ### Highlights
