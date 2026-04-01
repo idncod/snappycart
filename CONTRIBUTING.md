@@ -1,57 +1,62 @@
 # Contributing to snappycart
 
-Thanks for contributing to snappycart.
+Thanks for contributing to **snappycart**.
 
 This repository is an npm workspace monorepo. The package, demo app, and documentation site live side by side, so it is important to work in the correct workspace and run the correct commands from the correct level.
 
 This guide is written to be explicit on purpose. If you are new to open source or monorepos, follow the steps in order.
 
-## Contents
+> [!IMPORTANT]
+> External contributors should work from a fork.
+>
+> Start at the repository root, install dependencies there first, then install inside the workspace you want to work on if your local setup needs it.
+>
+> Before opening a pull request, make sure you have run the relevant checks for the part of the repo you changed.
 
-- [Before you start](#before-you-start)
-- [Repository layout](#repository-layout)
+---
+
+## Start here
+
+### New to snappycart?
+- [Choose your workspace](#choose-your-workspace)
 - [Fork and sync workflow](#fork-and-sync-workflow)
 - [Local setup](#local-setup)
-- [Install dependencies by workspace](#install-dependencies-by-workspace)
 - [Build and run the repository](#build-and-run-the-repository)
+
+### Ready to contribute?
 - [How to claim work](#how-to-claim-work)
 - [Branch naming](#branch-naming)
-- [Pull request title format](#pull-request-title-format)
+- [Issue and pull request naming](#issue-and-pull-request-naming)
 - [Contribution flow](#contribution-flow)
 - [Feature contribution expectations](#feature-contribution-expectations)
+
+### Keep releases clean
 - [Testing expectations](#testing-expectations)
 - [Changesets](#changesets)
 - [Communication and support](#communication-and-support)
 - [Ways to contribute](#ways-to-contribute)
 - [Security issues](#security-issues)
 
-## Before you start
+---
 
-Please use GitHub Issues to discuss bugs, features, refactors, documentation changes, and testing improvements before starting larger work.
+## Choose your workspace
 
-For first-time contributors, starting with a small scoped issue is the fastest way to learn the repository flow.
+Not every contributor needs every folder.
 
-If you are planning a new feature, please open or comment on an issue first so the work is visible and aligned before implementation begins.
+| Workspace | Path | Use this when you want to... |
+| --- | --- | --- |
+| Package | `packages/snappycart` | work on package logic, types, exports, styling, or package behaviour |
+| Demo app | `apps/demo` | showcase a new feature, validate UX, or improve the public demo |
+| Documentation site | `apps/documentation` | improve docs, examples, guides, or contributor-facing content |
+| Cypress | `cypress` | add or improve Cypress coverage |
+| Playwright | `playwright` | add or improve Playwright coverage |
 
-## Repository layout
+> [!TIP]
+> If you add a new user-facing feature to the package, please consider adding or updating a demo for it in `apps/demo`.
+>
+> It is not mandatory for every PR, but it is strongly encouraged because it keeps snappycart easier to understand, easier to test, and easier to present publicly.
 
-- `packages/snappycart`  
-  The publishable npm package.
-
-- `apps/demo`  
-  The local demo app used to test and showcase snappycart behaviour.
-
-- `apps/documentation`  
-  The documentation site.
-
-- `cypress`  
-  Cypress support files and related end-to-end or component test setup.
-
-- `playwright`  
-  Playwright tests.
-
-- `package.json` at the repository root  
-  Shared workspace scripts.
+---
 
 ## Fork and sync workflow
 
@@ -78,12 +83,14 @@ git remote add upstream https://github.com/idncod/snappycart.git
 
 ```bash
 git fetch upstream
-git checkout main
-git merge upstream/main
-git push origin main
+git switch master
+git merge upstream/master
+git push origin master
 ```
 
 Please sync your fork before starting a new contribution or refreshing older work.
+
+---
 
 ## Local setup
 
@@ -93,25 +100,25 @@ After cloning the repository, install dependencies from the root first:
 npm install
 ```
 
-This repository currently works best when you also install dependencies inside the workspace you are contributing to.
+For this repository, some local setups may also need dependencies installed inside the specific workspace you are contributing to.
 
-## Install dependencies by workspace
+### Install dependencies by workspace
 
-### Package
+#### Package
 
 ```bash
 cd packages/snappycart
 npm install
 ```
 
-### Demo app
+#### Demo app
 
 ```bash
 cd apps/demo
 npm install
 ```
 
-### Documentation site
+#### Documentation site
 
 ```bash
 cd apps/documentation
@@ -120,15 +127,26 @@ npm install
 
 Return to the repository root when you want to run shared workspace commands.
 
+---
+
 ## Build and run the repository
 
-From the repository root, run the shared workspace build:
+From the repository root, run the shared workspace build before starting work:
 
 ```bash
 npm run build --workspaces
 ```
 
-If your local root scripts also expose a wrapper command such as `npm run build`, you may use that instead.
+> [!IMPORTANT]
+> Run `npm run build --workspaces` from the repository root after installation.
+>
+> This step is required for this repo. If you skip it, parts of the local environment may fail or behave inconsistently.
+
+If your local root scripts also expose a wrapper command such as `npm run build`, you may use that too, but the required root workspace build command for contributor setup is:
+
+```bash
+npm run build --workspaces
+```
 
 ### Useful root-level commands
 
@@ -173,6 +191,8 @@ cd apps/documentation
 npm run dev
 ```
 
+---
+
 ## How to claim work
 
 Please do not start larger work without first checking or opening a GitHub Issue.
@@ -183,7 +203,11 @@ If you want to work on an existing issue:
 2. If you are not a collaborator, you may not be able to assign the issue to yourself.
 3. A maintainer will assign it if needed.
 
-If you open a new issue and want a maintainer to review or assign it, comment on the issue first. GitHub should remain the main source of truth for contribution tracking.
+If you open a new issue and want maintainer attention quickly, comment on the issue first and then reach out through one of the support channels listed below.
+
+GitHub should remain the main source of truth for contribution tracking.
+
+---
 
 ## Branch naming
 
@@ -200,13 +224,27 @@ Examples:
 - `feat/add-coupon-support`
 - `fix/cart-quantity-update`
 - `docs/improve-install-guide`
-- `test/add-cypress-checkout-flow`
+- `test/add-cypress-drawer-flow`
 
-## Pull request title format
+---
 
-Please use clear pull request titles that make the type of change obvious.
+## Issue and pull request naming
 
-Recommended format:
+Please use clear titles that make the type of change obvious.
+
+### Recommended issue title format
+
+```text
+[type] [area] short summary
+```
+
+Examples:
+
+- `[docs] README npm presentation`
+- `[test] cart drawer close behaviour`
+- `[feat] package custom currency formatter`
+
+### Recommended pull request title format
 
 ```text
 type(scope): summary
@@ -219,23 +257,29 @@ Examples:
 - `docs: improve contributor setup steps`
 - `test(cypress): add coverage for drawer close behaviour`
 
-If your pull request introduces a new feature, make sure the title clearly signals that.
+> [!IMPORTANT]
+> If your pull request introduces a **new feature**, make sure that is explicit in the PR title and PR description.
+>
+> That helps with review, release planning, changelog work, demo updates, and product communication.
 
-This helps with review, release preparation, changelog work, and project updates.
+---
 
 ## Contribution flow
 
 1. Fork the repository.
-2. Sync your fork with `upstream/main`.
+2. Sync your fork with `upstream/master`.
 3. Clone your fork locally.
 4. Install dependencies from the root.
-5. Install dependencies in the workspace you are changing.
-6. Pick or open a GitHub Issue.
-7. Create a focused branch.
-8. Make your changes.
-9. Run the relevant tests and checks.
-10. Add a changeset if package behaviour or output changed.
-11. Open a pull request with a clear summary.
+5. Install dependencies in the workspace you are changing if needed.
+6. Run `npm run build --workspaces` from the repository root.
+7. Pick or open a GitHub Issue.
+8. Create a focused branch.
+9. Make your changes.
+10. Run the relevant tests and checks.
+11. Add a changeset if package behaviour, package-facing documentation, or shipped output changed.
+12. Open a pull request with a clear summary.
+
+---
 
 ## Feature contribution expectations
 
@@ -249,6 +293,20 @@ If your pull request adds a new feature or changes user-facing behaviour:
 Demo updates are strongly encouraged for new features, even when they are not strictly required.
 
 If you add a new feature, please make that obvious in your pull request summary so it can be reviewed, released, and communicated clearly.
+
+> [!TIP]
+> A good feature PR does not just add code.
+>
+> It makes the feature visible.
+>
+> That usually means some combination of:
+> - updated docs
+> - a demo update
+> - a clear PR title
+> - a changeset
+> - release-ready wording in the PR summary
+
+---
 
 ## Testing expectations
 
@@ -291,21 +349,30 @@ npm run test:cypress:e2e
 npm run test:playwright
 ```
 
+---
+
 ## Changesets
 
-If your pull request changes package behaviour, public API, shipped files, or package output, add a changeset.
+If your pull request changes package behaviour, public API, shipped files, package-facing documentation that should appear in the next npm release, or package output, add a changeset.
 
-Create one from the root:
+Create one from the repository root:
 
 ```bash
 npm run changeset
 ```
 
-Version packages when preparing a release:
+Maintainers prepare the release version bump with:
 
 ```bash
 npm run version-packages
 ```
+
+> [!NOTE]
+> Contributors usually add the changeset in the PR.
+>
+> Maintainers usually run the version bump and publish the release.
+
+---
 
 ## Communication and support
 
@@ -316,6 +383,8 @@ If you need maintainer attention for issue assignment, clarification, or follow-
 `node@idncod.com`
 
 If you are already part of the contributor community channels, you may also ask there, but GitHub remains the primary place for issue and PR tracking.
+
+---
 
 ## Ways to contribute
 
@@ -329,6 +398,8 @@ You can contribute by improving:
 - test coverage
 - CI and release workflows
 - accessibility and usability
+
+---
 
 ## Security issues
 
