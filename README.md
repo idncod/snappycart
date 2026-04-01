@@ -1,6 +1,6 @@
 [![snappycart](https://img.shields.io/badge/SnappyCart-snappycart.idncod.com-F97316.svg?labelColor=111827)](https://snappycart.idncod.com/) [![License](https://img.shields.io/badge/license-MIT-F97316.svg?labelColor=111827)](./LICENSE) [![npm](https://img.shields.io/npm/v/snappycart.svg?label=npm&color=F97316&labelColor=111827)](https://www.npmjs.com/package/snappycart) [![Build and Test](https://github.com/idncod/snappycart/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/idncod/snappycart/actions/workflows/ci.yml) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-22C55E.svg?labelColor=111827)](./CONTRIBUTING.md) [![Conventional Commits](https://img.shields.io/badge/commits-conventional-22C55E.svg?labelColor=111827)](https://www.conventionalcommits.org/)
 
-![snappycart demo preview](snappycart_by_viola_lykova_realease_2026.png)
+![snappycart demo preview](https://snappycart.idncod.com/img/snappycart_by_viola_lykova_banner.png)
 
 [Documentation](https://snappycart.idncod.com/docs) · [npm package](https://www.npmjs.com/package/snappycart) · [Quick start](#quick-start) · [Core exports](#core-exports) · [Contributing](./CONTRIBUTING.md)
 
@@ -192,7 +192,8 @@ For contribution workflow and repository-specific guidance, see [CONTRIBUTING.md
 
 ## Repository structure
 This repository is a workspace monorepo. Not every folder matters to every contributor.
-![snappycart repository structure](repo-structure.png)
+
+![snappycart repository structure](https://snappycart.idncod.com/img/repo-structure.png)
 
 ## Folder guide
 
@@ -289,4 +290,4 @@ You can then either work from the repo root with workspace commands, or move int
 
 snappycart is [MIT licensed ↗](./LICENSE)
 
-![snappycart demo preview](snappycart_peaking.png)
+![snappycart demo preview](https://snappycart.idncod.com/img/snappycart_peaking.png)
