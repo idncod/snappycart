@@ -1,5 +1,11 @@
 # snappycart
 
+## 1.2.2
+
+### Patch Changes
+
+- 278e999: Add contributor onboarding documentation for snappycart.
+
 ## 1.2.1
 
 ### Patch Changes
