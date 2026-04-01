@@ -1,7 +1,5 @@
 [![SnappyCart](https://img.shields.io/badge/SnappyCart-snappycart.idncod.com-F97316.svg?labelColor=111827)](https://snappycart.idncod.com/) [![License](https://img.shields.io/badge/license-MIT-F97316.svg?labelColor=111827)](./LICENSE) [![npm](https://img.shields.io/npm/v/snappycart.svg?label=npm&color=F97316&labelColor=111827)](https://www.npmjs.com/package/snappycart) [![Build and Test](https://github.com/idncod/snappycart/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/idncod/snappycart/actions/workflows/ci.yml) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-22C55E.svg?labelColor=111827)](./CONTRIBUTING.md) [![Conventional Commits](https://img.shields.io/badge/commits-conventional-22C55E.svg?labelColor=111827)](https://www.conventionalcommits.org/)
 
-
-[//]: # (![snappycart demo preview]&#40;img.png&#41;)
 ![snappycart demo preview](snappycart_by_viola_lykova_realease_2026.png)
 
  # Snappycart <img src="https://raw.githubusercontent.com/idncod/snappycart/841c7d80ecdf3f21b2f4a5ba2300ee26dc919101/documentation/docs-site/static/img/snappycart_logo.svg" alt="Snappycart logo" height="40" >
