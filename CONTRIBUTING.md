@@ -276,7 +276,7 @@ Examples:
 8. Create a focused branch.
 9. Make your changes.
 10. Run the relevant tests and checks.
-11. Add a changeset if package behaviour, package-facing documentation, or shipped output changed.
+11. If your PR changes package behaviour, package-facing documentation, public API, shipped files, or package output, run `npm changeset` from the repository root **before you commit your PR work** so the generated `.changeset/*.md` file is included in the pull request.
 12. Open a pull request with a clear summary.
 
 ---
@@ -286,7 +286,7 @@ Examples:
 If your pull request adds a new feature or changes user-facing behaviour:
 
 - make that explicit in the PR title and PR description
-- add a changeset when required
+- run `npm changeset` before committing the PR when required
 - update documentation if usage changed
 - consider updating the demo app to showcase the feature
 
@@ -355,13 +355,19 @@ npm run test:playwright
 
 If your pull request changes package behaviour, public API, shipped files, package-facing documentation that should appear in the next npm release, or package output, add a changeset.
 
-Create one from the repository root:
+Create one from the repository root **before you commit the PR** so the changeset file is part of the pull request:
 
 ```bash
-npm run changeset
+npm changeset
 ```
 
-Maintainers prepare the release version bump with:
+or 
+
+```bash
+npm add changeset
+```
+
+Maintainers prepare the release version bump later with:
 
 ```bash
 npm run version-packages
