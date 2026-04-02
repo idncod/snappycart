@@ -1,5 +1,12 @@
 # snappycart
 
+## 1.2.3
+
+### Patch Changes
+
+- e11274d: Republish package metadata & npm release.
+- b8cbd0d: Republish package metadata & npm readme.
+
 ## 1.2.2
 
 ### Patch Changes
