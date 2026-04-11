@@ -35,16 +35,22 @@ export default function CartDrawer({
 
   return (
     <>
-      <div className="snappycart-overlay" onClick={onClose} aria-hidden="true" />
+      <div
+        className="snappycart-overlay"
+        onClick={onClose}
+        aria-hidden="true"
+        data-cy="cart-overlay"
+      />
 
       <aside
         className="snappycart-drawer"
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
+        data-cy="cart-drawer"
       >
         <header className="snappycart-drawer-header">
-          <h3 id={titleId} className="snappycart-drawer-title">
+          <h3 id={titleId} className="snappycart-drawer-title" data-cy="cart-drawer-title">
             {title} ({totalItems})
           </h3>
 
@@ -54,6 +60,7 @@ export default function CartDrawer({
             onClick={onClose}
             type="button"
             aria-label="Close cart"
+            data-cy="cart-close"
           >
             Close
           </button>
@@ -61,7 +68,9 @@ export default function CartDrawer({
 
         <div className="snappycart-drawer-body">
           {items.length === 0 ? (
-            <p className="snappycart-empty">Your cart is empty.</p>
+            <p className="snappycart-empty" data-cy="cart-empty">
+              Your cart is empty.
+            </p>
           ) : (
             items.map((li) => (
               <div className="snappycart-item" key={String(li.product.id)}>
@@ -117,7 +126,7 @@ export default function CartDrawer({
         </div>
 
         <footer className="snappycart-footer">
-          <div className="snappycart-row">
+          <div className="snappycart-row" data-cy="cart-subtotal">
             <span>Subtotal</span>
             <span>{formatMoney(subtotal)}</span>
           </div>
@@ -127,6 +136,7 @@ export default function CartDrawer({
               type="button"
               className="snappycart-button snappycart-button--danger"
               onClick={clear}
+              data-cy="cart-clear"
             >
               Clear cart
             </button>

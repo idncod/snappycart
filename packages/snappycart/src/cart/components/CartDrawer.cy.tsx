@@ -1,4 +1,4 @@
-import CartDrawer from '../components/CartDrawer';
+import CartDrawer from './CartDrawer';
 import { CartProvider } from '../context/CartProvider';
 
 const sel = (id: string) => `[data-cy="${id}"]`;
@@ -26,6 +26,7 @@ describe('CartDrawer (CT)', () => {
 
     cy.get(sel('cart-drawer-title')).should('be.visible');
     cy.get(sel('cart-drawer-title')).should('contain', '(0)');
+    cy.get(sel('cart-empty')).should('be.visible');
   });
 
   it('focuses the Close button on open', () => {
