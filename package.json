@@ -18,7 +18,7 @@
     "test:cypress:component": "cypress run --component",
     "test:cypress:e2e": "cypress run --e2e",
     "test:playwright": "playwright test",
-    "prepare": "husky",
+    "prepare": "node .husky/install.mjs",
     "sync:readme": "cp README.md packages/snappycart/README.md"
   },
   "devDependencies": {
