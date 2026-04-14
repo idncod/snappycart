@@ -1,0 +1,220 @@
+---
+title: Cart state transition matrix
+---
+
+# Cart state transition matrix
+
+This page defines the state transition model for SnappyCart.
+
+It exists to support test design for contributors working on cart logic, provider behaviour, and UI interactions.
+
+The goal is not to create random test cases. The goal is to map the cart states, valid transitions, guarded transitions, and derived value checks in a structured way.
+
+## Why this matrix matters
+
+SnappyCart behaviour is driven by more than one moving part:
+
+- cart data state
+- drawer UI state
+- derived values such as `totalItems` and `subtotal`
+
+A single action can look correct in isolation and still break the contract when state transitions are considered as a whole.
+
+## State model
+
+### Cart data states
+
+| ID | State | Description |
+| --- | --- | --- |
+| C0 | Empty | No items in the cart |
+| C1 | SingleLineQty1 | One line item with quantity equal to 1 |
+| C2 | SingleLineQtyGT1 | One line item with quantity greater than 1 |
+| C3 | MultiLine | More than one line item in the cart |
+
+### Drawer UI states
+
+| ID | State | Description |
+| --- | --- | --- |
+| D0 | DrawerClosed | Drawer is closed |
+| D1 | DrawerOpen | Drawer is open |
+
+### Combined states
+
+| ID | Combination | Description |
+| --- | --- | --- |
+| S0 | D0 + C0 | Drawer closed, cart empty |
+| S1 | D1 + C0 | Drawer open, cart empty |
+| S2 | D0 + C1 | Drawer closed, one line item, quantity = 1 |
+| S3 | D1 + C1 | Drawer open, one line item, quantity = 1 |
+| S4 | D0 + C2 | Drawer closed, one line item, quantity > 1 |
+| S5 | D1 + C2 | Drawer open, one line item, quantity > 1 |
+| S6 | D0 + C3 | Drawer closed, multiple line items |
+| S7 | D1 + C3 | Drawer open, multiple line items |
+
+## Core assumptions
+
+These assumptions should be treated as the intended contract unless the package behaviour changes deliberately:
+
+- adding the same product merges by `product.id`
+- increment increases quantity by one
+- decrement reduces quantity by one
+- decrement from one removes the line item
+- `clear()` empties the cart data
+- drawer visibility is controlled separately from cart data
+- invalid quantity input should not create a broken cart state
+
+## Main valid transitions
+
+| ID | From | Event | Guard | To | Expected result |
+| --- | --- | --- | --- | --- | --- |
+| T01 | S0 | INIT | Initial render | S0 | Empty cart, badge = 0, subtotal = 0 |
+| T02 | S0 | OPEN_DRAWER | User clicks cart icon | S1 | Drawer becomes visible |
+| T03 | S1 | CLOSE_DRAWER | Close action fired | S0 | Drawer becomes hidden |
+| T04 | S0 | ADD_NEW_ITEM | Valid product | S2 | First line item added |
+| T05 | S1 | ADD_NEW_ITEM | Valid product | S3 | First line item added, drawer remains open |
+| T06 | S2 | ADD_SAME_ITEM | Same `product.id` | S4 | Quantity increases from 1 to more than 1 |
+| T07 | S3 | ADD_SAME_ITEM | Same `product.id` | S5 | Quantity increases from 1 to more than 1 |
+| T08 | S2 | ADD_DIFFERENT_ITEM | Different `product.id` | S6 | Second line item added |
+| T09 | S3 | ADD_DIFFERENT_ITEM | Different `product.id` | S7 | Second line item added, drawer remains open |
+| T10 | S4 | INCREMENT_EXISTING | Existing line item | S4 | Quantity increases, same cart shape |
+| T11 | S5 | INCREMENT_EXISTING | Existing line item | S5 | Quantity increases, drawer remains open |
+| T12 | S4 | DECREMENT_EXISTING | Quantity becomes 1 | S2 | Single line item remains with quantity 1 |
+| T13 | S5 | DECREMENT_EXISTING | Quantity becomes 1 | S3 | Single line item remains with quantity 1 |
+| T14 | S2 | REMOVE_LINE | Only line item removed | S0 | Cart becomes empty |
+| T15 | S3 | REMOVE_LINE | Only line item removed | S1 | Cart becomes empty, drawer remains open |
+| T16 | S4 | REMOVE_LINE | Only line item removed | S0 | Cart becomes empty |
+| T17 | S5 | REMOVE_LINE | Only line item removed | S1 | Cart becomes empty, drawer remains open |
+| T18 | S6 | OPEN_DRAWER | User clicks cart icon | S7 | Drawer becomes visible |
+| T19 | S7 | CLOSE_DRAWER | Close action fired | S6 | Drawer becomes hidden |
+| T20 | S6 | ADD_SAME_ITEM | Existing line item | S6 | Quantity increases, line count unchanged |
+| T21 | S7 | ADD_SAME_ITEM | Existing line item | S7 | Quantity increases, line count unchanged |
+| T22 | S6 | ADD_DIFFERENT_ITEM | New line item | S6 | Line count increases |
+| T23 | S7 | ADD_DIFFERENT_ITEM | New line item | S7 | Line count increases, drawer remains open |
+| T24 | S6 | REMOVE_NON_LAST_LINE | More than one line remains | S6 | One line removed, cart still multi-line |
+| T25 | S7 | REMOVE_NON_LAST_LINE | More than one line remains | S7 | One line removed, cart still multi-line |
+| T26 | S6 | REMOVE_LINE | One line remains with quantity 1 | S2 | Cart collapses to single-line qty 1 |
+| T27 | S7 | REMOVE_LINE | One line remains with quantity 1 | S3 | Cart collapses to single-line qty 1 |
+| T28 | S6 | REMOVE_LINE | One line remains with quantity > 1 | S4 | Cart collapses to single-line qty > 1 |
+| T29 | S7 | REMOVE_LINE | One line remains with quantity > 1 | S5 | Cart collapses to single-line qty > 1 |
+| T30 | S2 | CLEAR | Clear invoked | S0 | Cart becomes empty |
+| T31 | S3 | CLEAR | Clear invoked | S1 | Cart becomes empty, drawer remains open |
+| T32 | S4 | CLEAR | Clear invoked | S0 | Cart becomes empty |
+| T33 | S5 | CLEAR | Clear invoked | S1 | Cart becomes empty, drawer remains open |
+| T34 | S6 | CLEAR | Clear invoked | S0 | Cart becomes empty |
+| T35 | S7 | CLEAR | Clear invoked | S1 | Cart becomes empty, drawer remains open |
+
+## Guarded and invalid transitions
+
+| ID | From | Event | Expected result |
+| --- | --- | --- | --- |
+| N01 | S0 or S1 | REMOVE_LINE | No state change |
+| N02 | S0 or S1 | INCREMENT_EXISTING | No state change |
+| N03 | S0 or S1 | DECREMENT_EXISTING | No state change |
+| N04 | S0 or S1 | CLEAR | No crash, state remains empty |
+| N05 | S0 | CLOSE_DRAWER | No state change |
+| N06 | S1 | OPEN_DRAWER | No state change |
+| N07 | Any non-empty state | SET_QUANTITY(0) | Line item removed or request rejected, but no broken state |
+| N08 | Any non-empty state | SET_QUANTITY(-1) | Request rejected or normalised safely |
+| N09 | Any non-empty state | SET_QUANTITY(NaN) | Request rejected, no corrupted state |
+| N10 | Any non-empty state | SET_QUANTITY(decimal) | Request rejected or normalised consistently |
+| N11 | Any state | ADD_NEW_ITEM with invalid payload | Request rejected, no corrupted state |
+| N12 | Any state | Rapid repeated actions | No broken totals, no duplicate inconsistent state |
+
+## Derived values matrix
+
+Every mutating transition must validate more than the line items list.
+
+| Event | Distinct lines | `totalItems` | `subtotal` | Badge | Empty state |
+| --- | --- | --- | --- | --- | --- |
+| Initial empty state | 0 | 0 | 0 | 0 | Visible when drawer is open |
+| Add new item | Increases | Increases | Increases | Updates | Hidden |
+| Add same item | Unchanged | Increases | Increases | Updates | Hidden |
+| Add different item | Increases | Increases | Increases | Updates | Hidden |
+| Increment | Unchanged | Increases by 1 | Increases | Updates | Hidden |
+| Decrement | Unchanged or reduced | Decreases by 1 | Decreases | Updates | Visible only if cart becomes empty |
+| Remove line | Decreases | Decreases | Decreases | Updates | Visible only if last line is removed |
+| Clear | 0 | 0 | 0 | 0 | Visible when drawer is open |
+
+## What to validate after each transition
+
+After every valid cart mutation, contributors should verify:
+
+- `items.length`
+- individual line item quantity
+- `totalItems`
+- `subtotal`
+- visible badge value
+- empty state visibility
+- drawer visibility state
+- correct rendering of item names, prices, and controls when applicable
+
+## Cross-matrix view
+
+### Cart data transitions
+
+| From \\ To | C0 Empty | C1 SingleQty1 | C2 SingleQtyGT1 | C3 MultiLine |
+| --- | ---: | ---: | ---: | ---: |
+| C0 Empty | INIT, CLEAR(empty) | ADD_NEW_ITEM | Not direct | Not direct |
+| C1 SingleQty1 | REMOVE_LAST, CLEAR | No-op or invalid actions | ADD_SAME, INCREMENT | ADD_DIFFERENT |
+| C2 SingleQtyGT1 | REMOVE_LAST, CLEAR | DECREMENT to 1 | INCREMENT, SET_QUANTITY(n > 1) | ADD_DIFFERENT |
+| C3 MultiLine | CLEAR, remove until empty | Remove until one line remains at qty 1 | Remove until one line remains at qty > 1 | Add, increment, remove non-last |
+
+### Drawer transitions
+
+| From \\ Event | OPEN_DRAWER | CLOSE_DRAWER | CART_MUTATION |
+| --- | --- | --- | --- |
+| D0 Closed | D1 | D0 | Should remain D0 unless host app changes it |
+| D1 Open | D1 | D0 | Should remain D1 unless host app changes it |
+
+## Recommended coverage priority
+
+### P0
+
+- add first item
+- add same item
+- add different item
+- decrement from quantity greater than 1 to quantity equal to 1
+- remove last line item
+- clear the cart
+- open and close the drawer without data corruption
+
+### P1
+
+- invalid quantity handling
+- invalid product payload handling
+- subtotal recalculation
+- stale action handling after clear
+- repeated user clicks
+
+### P2
+
+- keyboard close behaviour
+- image fallback rendering
+- host-controlled integration edge cases
+
+## Practical contributor notes
+
+This matrix should guide:
+
+- reducer unit tests
+- provider and hook integration tests
+- component tests for `CartDrawer`
+- component tests for `CartIcon`
+- demo end-to-end smoke coverage
+
+It should not be treated as a requirement to write one test per row in the same layer.
+
+The point is to make sure the contract is fully represented and covered at the right level.
+
+## Summary
+
+SnappyCart has two important state dimensions:
+
+- cart data state
+- drawer visibility state
+
+The project also relies on derived values such as `totalItems` and `subtotal`.
+
+That makes state transition testing a strong fit for the package.
+
+This matrix gives contributors a complete model for reasoning about valid behaviour, invalid behaviour, and risk-based test coverage.

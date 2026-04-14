@@ -10,7 +10,7 @@
     "lint": "npm run lint --workspaces --if-present",
     "test": "npm test --workspace=snappycart",
     "dev:demo": "npm run dev --workspace=demo",
-    "dev:docs": "npm run dev --workspace=documentation",
+    "dev:docs": "npm start --workspace=documentation",
     "build:package": "npm run build --workspace=snappycart",
     "changeset": "changeset",
     "version-packages": "changeset version",

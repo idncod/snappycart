@@ -8,6 +8,8 @@ This page defines the recommended automated testing plan for SnappyCart.
 
 The goal is not to inflate the suite with random checks. The goal is to protect the cart contract, the main UI behaviour, and the published package surface with a practical number of tests that contributors can keep healthy over time.
 
+For a full state-based test design reference, see [State transition matrix](./state-transition-matrix).
+
 ## Why this plan exists
 
 SnappyCart is not a full online store. It is a reusable cart library.
