@@ -54,10 +54,20 @@ export default function App() {
               </p>
 
               <div className={styles.heroActions}>
-                <button className={styles.primaryBtn} type="button" onClick={() => setOpen(true)}>
+                <button
+                  className={styles.primaryBtn}
+                  type="button"
+                  onClick={() => setOpen(true)}
+                  data-cy="hero-open-cart"
+                >
                   Open cart
                 </button>
-                <button className={styles.secondaryBtn} type="button" onClick={handleAddStarterSet}>
+                <button
+                  className={styles.secondaryBtn}
+                  type="button"
+                  onClick={handleAddStarterSet}
+                  data-cy="hero-add-starter-set"
+                >
                   Add starter set
                 </button>
               </div>
@@ -79,6 +89,7 @@ export default function App() {
                       type="button"
                       className={styles.miniBtn}
                       onClick={() => addItem(products[0])}
+                      data-cy="add-apple"
                     >
                       Add Apple
                     </button>
@@ -86,6 +97,7 @@ export default function App() {
                       type="button"
                       className={styles.miniBtn}
                       onClick={() => addItem(products[1], 2)}
+                      data-cy="add-2-bananas"
                     >
                       Add 2 Bananas
                     </button>
@@ -93,10 +105,16 @@ export default function App() {
                       type="button"
                       className={styles.miniBtn}
                       onClick={() => addItem(products[3])}
+                      data-cy="add-strawberries"
                     >
                       Add Strawberries
                     </button>
-                    <button type="button" className={styles.miniBtn} onClick={() => setOpen(true)}>
+                    <button
+                      type="button"
+                      className={styles.miniBtn}
+                      onClick={() => setOpen(true)}
+                      data-cy="open-drawer"
+                    >
                       Open drawer
                     </button>
                   </div>
