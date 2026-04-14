@@ -21,9 +21,12 @@ export default function CartIcon({ position = 'bottom-right', onClick }: CartIco
       className={`snappycart-cart-icon ${posClass}`}
       onClick={onClick}
       aria-label={`Open cart, ${totalItems} items`}
+      data-cy="cart-icon"
     >
       <span className="snappycart-cart-icon__label">Cart</span>
-      <span className="snappycart-cart-icon__badge">{totalItems}</span>
+      <span className="snappycart-cart-icon__badge" data-cy="cart-badge">
+        {totalItems}
+      </span>
     </button>
   );
 }

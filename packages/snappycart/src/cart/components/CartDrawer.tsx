@@ -73,7 +73,11 @@ export default function CartDrawer({
             </p>
           ) : (
             items.map((li) => (
-              <div className="snappycart-item" key={String(li.product.id)}>
+              <div
+                className="snappycart-item"
+                key={String(li.product.id)}
+                data-cy={`cart-item-${li.product.id}`}
+              >
                 {li.product.imageUrl ? (
                   <img
                     className="snappycart-item-image"
@@ -96,17 +100,21 @@ export default function CartDrawer({
                       className="snappycart-qty-button"
                       onClick={() => decrement(li.product.id)}
                       aria-label={`Decrease quantity of ${li.product.name}`}
+                      data-cy={`cart-dec-${li.product.id}`}
                     >
                       -
                     </button>
 
-                    <span className="snappycart-qty-value">{li.quantity}</span>
+                    <span className="snappycart-qty-value" data-cy={`cart-qty-${li.product.id}`}>
+                      {li.quantity}
+                    </span>
 
                     <button
                       type="button"
                       className="snappycart-qty-button"
                       onClick={() => increment(li.product.id)}
                       aria-label={`Increase quantity of ${li.product.name}`}
+                      data-cy={`cart-inc-${li.product.id}`}
                     >
                       +
                     </button>
@@ -116,6 +124,7 @@ export default function CartDrawer({
                     type="button"
                     className="snappycart-remove-button"
                     onClick={() => removeItem(li.product.id)}
+                    data-cy={`cart-remove-${li.product.id}`}
                   >
                     Remove
                   </button>
