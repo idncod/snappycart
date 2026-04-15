@@ -6,14 +6,19 @@ test.describe('add item to cart', () => {
       });
 
       test('adds an item and shows it in the drawer', async ({ page }) => {
-            await page.locator('[data-cy="add-to-cart-apple"]').click();
+            
+            const addButtonApple = page.locator(`article:has-text("Apple")`).getByRole('button', { name: /add to cart/i })
+            await addButtonApple.first().click();
 
-            await expect(page.locator('[data-cy="cart-badge"]')).toContainText('1');
+            const badge = page.locator('.snappycart-cart-icon__badge');
+            await expect(badge).toHaveText('1');
 
-            await page.locator('[data-cy="cart-icon"]').click();
+            await page.getByLabel('Open cart').click();
 
-            await expect(page.locator('[data-cy="cart-drawer"]')).toBeVisible();
+            const drawer = page.getByRole('dialog');
+            await expect(drawer).toBeVisible();
 
-            await expect(page.locator('[data-cy="cart-item-name-apple"]')).toContainText('Apple');
+            await expect(page.locator('.snappycart-item-name')).toHaveText(/apple/i);
+
       })
 })
