@@ -123,6 +123,9 @@ These tests validate library components in an interactive browser-like environme
 | Confirmed | CartDrawer | Component | Cypress | close button receives focus on open | [CartDrawer.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartDrawer.cy.tsx) | Add Drive or YouTube link | Accessibility and UX check |
 | Confirmed | CartDrawer | Component | Cypress | Escape triggers `onClose` | [CartDrawer.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartDrawer.cy.tsx) | Add Drive or YouTube link | Keyboard interaction coverage |
 | Confirmed | CartDrawer | Component | Cypress | overlay click triggers `onClose` | [CartDrawer.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartDrawer.cy.tsx) | Add Drive or YouTube link | Overlay close interaction |
+| Confirmed | CartIcon | Component | Cypress | empty badge behaviour matches the current cart state | [CartIcon.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartIcon/CartIcon.cy.tsx) | Add Drive or YouTube link | Validates the empty cart badge state without relying on CSS selectors |
+| Confirmed | CartIcon | Component | Cypress | badge updates to `1` when the cart has one item | [CartIcon.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartIcon/CartIcon.cy.tsx) | Add Drive or YouTube link | Covers the single-item badge transition |
+| Confirmed | CartIcon | Component | Cypress | badge reflects the total item count when the cart has multiple items | [CartIcon.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartIcon/CartIcon.cy.tsx) | Add Drive or YouTube link | Confirms total quantity rendering rather than distinct line count |
 
 ### Playwright component coverage
 
@@ -277,7 +280,7 @@ It should be read together with:
 
 The current coverage register can be expanded over time with:
 
-- more component coverage for `CartIcon`
+- broader component coverage for `CartIcon` and `CartDrawer` integration flows
 - more unit coverage for reducer-only logic
 - CI report artifact links
 - coverage percentage badges
