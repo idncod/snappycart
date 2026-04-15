@@ -19,10 +19,10 @@ type FruityViceFruit = {
 };
 
 const fallbackProducts: CartProduct[] = [
-  { id: 'fallback-apple', name: 'Apple', price: 0.99 },
-  { id: 'fallback-banana', name: 'Banana', price: 0.89 },
+  { id: 'fallback-apple', name: 'Apple', price: 0.6 },
+  { id: 'fallback-banana', name: 'Banana', price: 0.4 },
   { id: 'fallback-orange', name: 'Orange', price: 1.09 },
-  { id: 'fallback-strawberry', name: 'Strawberry', price: 1.49 },
+  { id: 'fallback-strawberry', name: 'Strawberry', price: 1.25 },
 ];
 
 function toDemoPrice(fruit: FruityViceFruit): number {
