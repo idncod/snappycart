@@ -12,6 +12,8 @@ For a full state-based test design reference, see [Cart state transition matrix]
 
 For a rule-based test design reference, see [Cart decision tables](./cart-decision-tables).
 
+For a current coverage register with test file links and execution evidence, see [Test coverage and evidence](./test-coverage-and-evidence).
+
 ## Why this plan exists
 
 SnappyCart is not a full online store. It is a reusable cart library.

@@ -1,0 +1,297 @@
+---
+title: Test coverage and evidence
+sidebar_label: Test coverage and evidence
+sidebar_position: 4
+description: Coverage register for SnappyCart, showing what is tested, which framework covers it, where the test lives in GitHub, and where to find supporting video evidence.
+---
+
+# Test coverage and evidence
+
+This page is the living coverage register for SnappyCart.
+
+It is intended for two audiences:
+
+- **contributors**, who need to understand what is already covered and where to add new tests
+- **package users**, who want confidence that the core cart contract and UI flows are already exercised by automated tests
+
+This page is not a replacement for the test strategy, state transition matrix, or decision tables.
+
+It answers a different question:
+
+**what is currently covered, by which framework, where is the test, and where is the execution evidence?**
+
+## Why this page exists
+
+SnappyCart uses multiple testing layers and multiple tools:
+
+- **Vitest** for unit and integration-style library tests
+- **Cypress** for component tests and demo-level browser tests
+- **Playwright** for component tests and end-to-end smoke tests
+
+Some coverage is intentionally duplicated across Cypress and Playwright.
+
+That duplication is acceptable when it improves confidence at different layers or validates the same behaviour through different test runners.
+
+## How to use this page
+
+Each row in the tables below represents a coverage entry.
+
+Contributors should update this page when they:
+
+- add a new automated test
+- replace one framework with another
+- add a new browser-level flow
+- upload a new video walkthrough for an existing automated test
+
+## Required fields for each coverage entry
+
+Every coverage row should include:
+
+- **Status**
+- **Area**
+- **Level**
+- **Framework**
+- **What is covered**
+- **GitHub test link**
+- **Video evidence link**
+- **Notes**
+
+## Status legend
+
+| Status | Meaning |
+| --- | --- |
+| Confirmed | Test exists in the repository and is linked below |
+| Partial | Coverage exists, but the flow is only partially validated |
+| Planned | Intended coverage, but no committed automated test yet |
+| Deprecated | Historical entry kept for reference but no longer current |
+
+## Coverage model
+
+The tables are grouped by testing level:
+
+- unit
+- integration
+- component
+- end-to-end
+
+Frameworks are listed separately even when they overlap.
+
+That is intentional.
+
+The point of this page is not to hide duplication. The point is to make duplication visible and understandable.
+
+---
+
+## Unit and integration coverage
+
+These tests validate core cart behaviour inside the package itself.
+
+### Vitest coverage
+
+| Status | Area | Level | Framework | What is covered | GitHub test link | Video evidence link | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Confirmed | Cart provider and hook contract | Integration | Vitest | add item with default quantity | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Validates provider state update through hook usage |
+| Confirmed | Cart provider and hook contract | Integration | Vitest | add item with explicit quantity | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Same file, separate scenario |
+| Confirmed | Cart provider and hook contract | Integration | Vitest | increment and decrement, including removal at zero | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Covers quantity mutation path |
+| Confirmed | Cart provider and hook contract | Integration | Vitest | remove item directly | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Direct line removal |
+| Confirmed | Derived values | Integration | Vitest | totalItems and subtotal calculation | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Validates derived values |
+| Confirmed | Cart reset | Integration | Vitest | clear cart | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Confirms empty result after clear |
+
+### Guidance for contributors
+
+Use this section for:
+
+- cart reducer logic
+- provider and hook behaviour
+- derived totals
+- safe handling of cart mutations inside the library
+
+If the change is purely internal and does not require a browser, this is usually the cheapest layer.
+
+---
+
+## Component coverage
+
+These tests validate library components in an interactive browser-like environment.
+
+### Cypress component coverage
+
+| Status | Area | Level | Framework | What is covered | GitHub test link | Video evidence link | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Confirmed | CartDrawer | Component | Cypress | drawer does not render when closed | [CartDrawer.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartDrawer.cy.tsx) | Add Drive or YouTube link | Confirms closed state rendering |
+| Confirmed | CartDrawer | Component | Cypress | empty state renders when open with no items | [CartDrawer.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartDrawer.cy.tsx) | Add Drive or YouTube link | Validates empty drawer output |
+| Confirmed | CartDrawer | Component | Cypress | close button receives focus on open | [CartDrawer.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartDrawer.cy.tsx) | Add Drive or YouTube link | Accessibility and UX check |
+| Confirmed | CartDrawer | Component | Cypress | Escape triggers `onClose` | [CartDrawer.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartDrawer.cy.tsx) | Add Drive or YouTube link | Keyboard interaction coverage |
+| Confirmed | CartDrawer | Component | Cypress | overlay click triggers `onClose` | [CartDrawer.cy.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartDrawer.cy.tsx) | Add Drive or YouTube link | Overlay close interaction |
+
+### Playwright component coverage
+
+| Status | Area | Level | Framework | What is covered | GitHub test link | Video evidence link | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Confirmed | CartDrawer | Component | Playwright CT | clicking Close triggers `onClose` | [CartDrawer.pw.spec.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/components/CartDrawer.pw.spec.tsx) | Add Drive or YouTube link | Confirms callback wiring in Playwright component runner |
+
+### Guidance for contributors
+
+Use this section for:
+
+- component visibility
+- focus behaviour
+- keyboard handling
+- overlay behaviour
+- callback wiring
+- visual browser-level interactions that do not require full app navigation
+
+If the same component rule is covered in both Cypress and Playwright, keep both rows.
+
+That overlap should be visible, not hidden.
+
+---
+
+## End-to-end coverage
+
+These tests validate demo-level user flows through the running application.
+
+### Cypress end-to-end coverage
+
+| Status | Area | Level | Framework | What is covered | GitHub test link | Video evidence link | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Confirmed | Demo cart smoke | E2E | Cypress | add item from demo and show it in drawer | [demo-cart.cy.ts](https://github.com/idncod/snappycart/blob/master/cypress/e2e/demo-cart.cy.ts) | Add Drive or YouTube link | Demo-level add-to-cart smoke |
+| Confirmed | Demo cart smoke | E2E | Cypress | increment and decrement quantity from drawer | [demo-cart.cy.ts](https://github.com/idncod/snappycart/blob/master/cypress/e2e/demo-cart.cy.ts) | Add Drive or YouTube link | Quantity mutation flow |
+| Confirmed | Demo cart smoke | E2E | Cypress | remove item from drawer | [demo-cart.cy.ts](https://github.com/idncod/snappycart/blob/master/cypress/e2e/demo-cart.cy.ts) | Add Drive or YouTube link | Remove line flow |
+| Confirmed | Demo cart smoke | E2E | Cypress | clear cart after starter set | [demo-cart.cy.ts](https://github.com/idncod/snappycart/blob/master/cypress/e2e/demo-cart.cy.ts) | Add Drive or YouTube link | Bulk reset flow |
+
+### Playwright end-to-end coverage
+
+| Status | Area | Level | Framework | What is covered | GitHub test link | Video evidence link | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Confirmed | Demo cart smoke | E2E | Playwright | add item to cart and verify it appears in drawer | [cart-add-item.spec.ts](https://github.com/idncod/snappycart/blob/master/playwright/e2e/cart-add-item.spec.ts) | Add Drive or YouTube link | Add item, badge update, drawer visibility |
+| Confirmed | Drawer smoke | E2E | Playwright | drawer opens and closes in the demo | [cart-drawer-open-close.spec.ts](https://github.com/idncod/snappycart/blob/master/playwright/e2e/cart-drawer-open-close.spec.ts) | Add Drive or YouTube link | Focused drawer visibility flow |
+
+### Guidance for contributors
+
+Use this section for:
+
+- smoke flows through the demo app
+- top-level user actions
+- browser behaviour that depends on real navigation and mounted UI
+
+Cypress and Playwright may overlap here.
+
+That is acceptable when:
+
+- one runner acts as the main regression smoke
+- the second runner validates the same flow from another browser toolchain
+- the project is comparing or migrating runners over time
+
+---
+
+## Duplicate coverage policy
+
+Overlap between Cypress and Playwright is allowed when it is intentional.
+
+Typical valid reasons include:
+
+- validating the same critical flow in two different browser runners
+- comparing reliability during framework migration
+- keeping one smoke path in each tool while broader coverage is still evolving
+
+Overlap becomes a problem only when it creates maintenance cost without adding confidence.
+
+Contributors should avoid blind duplication.
+
+When adding a new row, ask:
+
+- does this duplicate an existing flow exactly
+- does the second runner add confidence that the first does not
+- is this duplication temporary, strategic, or accidental
+
+If the duplication is intentional, say so in the **Notes** column.
+
+---
+
+## Video evidence policy
+
+Each browser-level test entry should ideally include a short execution video.
+
+Recommended workflow:
+
+1. contributor records the automated test execution
+2. contributor uploads the video to the agreed shared drive
+3. maintainer publishes or mirrors the final version to YouTube if needed
+4. this table is updated with a stable video link
+
+### Preferred video format
+
+- short and focused
+- one test flow per video where possible
+- no unnecessary narration required
+- stable viewport
+- clear visible assertions
+- either Drive or YouTube link is acceptable
+
+### Where video evidence is most useful
+
+Video evidence is most valuable for:
+
+- component tests with visible interaction
+- end-to-end flows
+- UI regressions
+- onboarding new contributors to expected behaviour
+
+Video evidence is optional for pure library-level unit tests, unless a maintainer specifically wants a visual walkthrough.
+
+---
+
+## How contributors should update this page
+
+When you add a new automated test:
+
+1. add the test file to the repository
+2. commit and push the test normally
+3. add a new row to the correct table in this page
+4. link the exact GitHub test file
+5. add a Drive or YouTube link if video evidence exists
+6. describe the covered behaviour in one short sentence
+7. mark overlap clearly if the same flow already exists in another framework
+
+## How package users should read this page
+
+Package users do not need to read every test file.
+
+This page gives a high-level confidence map:
+
+- what the package already tests
+- which framework covers each area
+- where the source test lives
+- where to find visual evidence of the flow
+
+It should be read together with:
+
+- the cart testing plan
+- the cart state transition matrix
+- the cart decision tables
+
+---
+
+## Recommended future additions
+
+The current coverage register can be expanded over time with:
+
+- more component coverage for `CartIcon`
+- more unit coverage for reducer-only logic
+- CI report artifact links
+- coverage percentage badges
+- links to generated HTML reports if the project publishes them
+
+## Summary
+
+SnappyCart uses multiple testing layers and multiple frameworks.
+
+This page exists to make that coverage visible.
+
+It is a living register of:
+
+- what is covered
+- how it is covered
+- where the test lives
+- where the execution evidence can be inspected
