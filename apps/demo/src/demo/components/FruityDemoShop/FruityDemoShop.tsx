@@ -85,15 +85,29 @@ export function FruityDemoShop({ onAdd }: { onAdd: (product: CartProduct, qty?: 
   }, []);
 
   return (
-    <div className={styles.wrap}>
-      {loading && <div className={styles.status}>Loading live fruit products...</div>}
+    <div className={styles.wrap} data-cy="fruity-demo-shop">
+      {loading && (
+        <div className={styles.status} data-cy="fruity-demo-loading">
+          Loading live fruit products...
+        </div>
+      )}
 
-      {!loading && error && <div className={`${styles.status} ${styles.error}`}>{error}</div>}
+      {!loading && error && (
+        <div className={`${styles.status} ${styles.error}`} data-cy="fruity-demo-arror">
+          {error}
+        </div>
+      )}
 
-      {!loading && products.length > 0 && <ProductGrid products={products} onAdd={onAdd} />}
+      {!loading && products.length > 0 && (
+        <div data-cy="fruity-dem0-grid">
+          <ProductGrid products={products} onAdd={onAdd} />
+        </div>
+      )}
 
       {!loading && usingFallback && (
-        <div className={styles.note}>Showing fallback demo products so the cart still works.</div>
+        <div className={styles.note} data-cy="fruity-demo-fallback-note">
+          Showing fallback demo products so the cart still works.
+        </div>
       )}
     </div>
   );
