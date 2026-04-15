@@ -7,9 +7,9 @@ sidebar_position: 10
 
 ## What we are testing
 
-SnappyCart is a UI package. Cypress Component Testing gives us the fastest feedback loop for browser-rendered behaviour without needing to run full end-to-end flows.
+Snappycart is a UI package. Cypress Component Testing gives us the fastest feedback loop for browser-rendered behaviour without needing to run full end-to-end flows.
 
-This page covers component-level behaviour for SnappyCart UI pieces and their mounted integration shape. It does **not** replace unit tests for reducers or hooks, and it does **not** replace end-to-end coverage in the demo app.
+This page covers component-level behaviour for Snappycart UI pieces and their mounted integration shape. It does **not** replace unit tests for reducers or hooks, and it does **not** replace end-to-end coverage in the demo app.
 
 For the full test inventory and the recommended number of tests across all layers, read the [Cart testing plan](/docs/contributing/cart-testing-plan).
 
@@ -155,33 +155,32 @@ This allows contributors to test real browser-visible transitions without reachi
 
 Use this table to decide what to cover in Cypress Component Testing. Each row describes a browser-visible state transition that should be validated through mounted components.
 
-
-| ID    | Component                            | Current state                                   | Trigger / event                              | Expected next state                               | What to assert in CT                                               |
-| ----- | ------------------------------------ | ----------------------------------------------- | -------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------ |
-| CT-01 | CartDrawer                           | Drawer closed, cart empty                       | Mount with `open={false}`                    | Drawer remains absent from DOM                    | `cart-drawer` does not exist                                       |
-| CT-02 | CartDrawer                           | Drawer open, cart empty                         | Mount with `open={true}`                     | Empty state is shown                              | `cart-empty` visible, title shows `(0)`                            |
-| CT-03 | CartDrawer                           | Drawer open, cart empty                         | Initial render                               | Close button receives focus                       | `cart-close` is focused                                            |
-| CT-04 | CartDrawer                           | Drawer open                                     | Press `Escape`                               | Drawer requests close                             | `onClose` called                                                   |
-| CT-05 | CartDrawer                           | Drawer open                                     | Click overlay                                | Drawer requests close                             | `onClose` called                                                   |
-| CT-06 | CartIcon                             | Empty cart                                      | Mount inside provider                        | Badge shows empty or zero state according to spec | `cart-badge` matches expected empty behaviour                      |
-| CT-07 | CartIcon                             | Cart has 1 item                                 | Seed one item through harness                | Badge updates to `1`                              | `cart-badge` contains `1`                                          |
-| CT-08 | CartIcon                             | Cart has multiple items                         | Seed multiple quantities or items            | Badge reflects total item count                   | `cart-badge` contains expected total                               |
-| CT-09 | CartIcon + CartDrawer                | Drawer closed, cart empty                       | Click cart icon                              | Drawer opens in empty state                       | `cart-drawer` visible and `cart-empty` visible                     |
-| CT-10 | CartIcon + CartDrawer + CartProvider | Empty cart, drawer closed                       | Add first item through harness               | Cart becomes non-empty                            | Badge updates and title count updates when opened                  |
-| CT-11 | CartDrawer + CartProvider            | Drawer open, cart has 1 item with qty 1         | Open drawer after seeding first item         | Populated item row is shown                       | `cart-item-<id>` visible and quantity is `1`                       |
-| CT-12 | CartDrawer + CartProvider            | Drawer open, cart has 1 item with qty 1         | Click increment                              | Quantity becomes `2`                              | `cart-qty-value-<id>` shows `2`, subtotal updates                  |
-| CT-13 | CartDrawer + CartProvider            | Drawer open, cart has 1 item with qty 2         | Click decrement                              | Quantity becomes `1`                              | `cart-qty-value-<id>` shows `1`, subtotal updates                  |
-| CT-14 | CartDrawer + CartProvider            | Drawer open, cart has 1 item with qty 1         | Click decrement if decrement removes at `1`  | Cart returns to empty state                       | Item row disappears and empty state is shown                       |
-| CT-15 | CartDrawer + CartProvider            | Drawer open, cart has 1 item with qty 1         | Click remove                                 | Item is removed                                   | Item row disappears and empty state is shown                       |
-| CT-16 | CartDrawer + CartProvider            | Drawer open, cart has multiple distinct items   | Seed two different items                     | Multiple rows are rendered                        | Both rows visible and subtotal matches sum                         |
-| CT-17 | CartDrawer + CartProvider            | Drawer open, cart has multiple items            | Remove one item                              | Remaining item stays visible                      | Removed row absent, remaining row visible, subtotal recalculated   |
-| CT-18 | CartDrawer + CartProvider            | Drawer open, cart has one remaining item        | Remove last item                             | Cart returns to empty state                       | Empty state shown and subtotal cleared or hidden according to spec |
-| CT-19 | CartDrawer + CartProvider            | Drawer open, cart has items                     | Click clear button                           | Cart becomes empty                                | `cart-clear` empties cart and empty state is shown                 |
-| CT-20 | CartDrawer + CartProvider            | Drawer open, subtotal visible                   | Increment or decrement quantity              | Subtotal recalculates immediately                 | `cart-subtotal` updates to expected value                          |
-| CT-21 | CartDrawer + CartProvider            | Drawer open after state changes                 | Close and reopen drawer                      | State remains consistent                          | Same items, same quantities, same subtotal                         |
-| CT-22 | CartIcon + CartDrawer + CartProvider | Cart has items, drawer closed                   | Click icon, then close via overlay or Escape | Drawer closes without losing cart state           | Drawer hides and badge still shows current count                   |
-| CT-23 | CartDrawer + CartProvider            | Cart contains visible product metadata          | Seed representative product                  | Product content renders correctly                 | Expected product name or visible fields are shown                  |
-| CT-24 | CartDrawer + CartProvider            | Cart has enough items for repeated interactions | Increment, decrement, remove in sequence     | UI stays in sync after each transition            | Count, rows, and subtotal remain correct after each step           |
+| ID | Component | Current state | Trigger / event | Expected next state | What to assert in CT |
+| --- | --- | --- | --- | --- | --- |
+| <span id="ct-01">CT-01</span> | CartDrawer | Drawer closed, cart empty | Mount with `open={false}` | Drawer remains absent from DOM | `cart-drawer` does not exist |
+| <span id="ct-02">CT-02</span> | CartDrawer | Drawer open, cart empty | Mount with `open={true}` | Empty state is shown | `cart-empty` visible, title shows `(0)` |
+| <span id="ct-03">CT-03</span> | CartDrawer | Drawer open, cart empty | Initial render | Close button receives focus | `cart-close` is focused |
+| <span id="ct-04">CT-04</span> | CartDrawer | Drawer open | Press `Escape` | Drawer requests close | `onClose` called |
+| <span id="ct-05">CT-05</span> | CartDrawer | Drawer open | Click overlay | Drawer requests close | `onClose` called |
+| <span id="ct-06">CT-06</span> | CartIcon | Empty cart | Mount inside provider | Badge shows empty or zero state according to spec | `cart-badge` matches expected empty behaviour |
+| <span id="ct-07">CT-07</span> | CartIcon | Cart has 1 item | Seed one item through harness | Badge updates to `1` | `cart-badge` contains `1` |
+| <span id="ct-08">CT-08</span> | CartIcon | Cart has multiple items | Seed multiple quantities or items | Badge reflects total item count | `cart-badge` contains expected total |
+| <span id="ct-09">CT-09</span> | CartIcon + CartDrawer | Drawer closed, cart empty | Click cart icon | Drawer opens in empty state | `cart-drawer` visible and `cart-empty` visible |
+| <span id="ct-10">CT-10</span> | CartIcon + CartDrawer + CartProvider | Empty cart, drawer closed | Add first item through harness | Cart becomes non-empty | Badge updates and title count updates when opened |
+| <span id="ct-11">CT-11</span> | CartDrawer + CartProvider | Drawer open, cart has 1 item with qty 1 | Open drawer after seeding first item | Populated item row is shown | `cart-item-<id>` visible and quantity is `1` |
+| <span id="ct-12">CT-12</span> | CartDrawer + CartProvider | Drawer open, cart has 1 item with qty 1 | Click increment | Quantity becomes `2` | `cart-qty-value-<id>` shows `2`, subtotal updates |
+| <span id="ct-13">CT-13</span> | CartDrawer + CartProvider | Drawer open, cart has 1 item with qty 2 | Click decrement | Quantity becomes `1` | `cart-qty-value-<id>` shows `1`, subtotal updates |
+| <span id="ct-14">CT-14</span> | CartDrawer + CartProvider | Drawer open, cart has 1 item with qty 1 | Click decrement if decrement removes at `1` | Cart returns to empty state | Item row disappears and empty state is shown |
+| <span id="ct-15">CT-15</span> | CartDrawer + CartProvider | Drawer open, cart has 1 item with qty 1 | Click remove | Item is removed | Item row disappears and empty state is shown |
+| <span id="ct-16">CT-16</span> | CartDrawer + CartProvider | Drawer open, cart has multiple distinct items | Seed two different items | Multiple rows are rendered | Both rows visible and subtotal matches sum |
+| <span id="ct-17">CT-17</span> | CartDrawer + CartProvider | Drawer open, cart has multiple items | Remove one item | Remaining item stays visible | Removed row absent, remaining row visible, subtotal recalculated |
+| <span id="ct-18">CT-18</span> | CartDrawer + CartProvider | Drawer open, cart has one remaining item | Remove last item | Cart returns to empty state | Empty state shown and subtotal cleared or hidden according to spec |
+| <span id="ct-19">CT-19</span> | CartDrawer + CartProvider | Drawer open, cart has items | Click clear button | Cart becomes empty | `cart-clear` empties cart and empty state is shown |
+| <span id="ct-20">CT-20</span> | CartDrawer + CartProvider | Drawer open, subtotal visible | Increment or decrement quantity | Subtotal recalculates immediately | `cart-subtotal` updates to expected value |
+| <span id="ct-21">CT-21</span> | CartDrawer + CartProvider | Drawer open after state changes | Close and reopen drawer | State remains consistent | Same items, same quantities, same subtotal |
+| <span id="ct-22">CT-22</span> | CartIcon + CartDrawer + CartProvider | Cart has items, drawer closed | Click icon, then close via overlay or Escape | Drawer closes without losing cart state | Drawer hides and badge still shows current count |
+| <span id="ct-23">CT-23</span> | CartDrawer + CartProvider | Cart contains visible product metadata | Seed representative product | Product content renders correctly | Expected product name or visible fields are shown |
+| <span id="ct-24">CT-24</span> | CartDrawer + CartProvider | Cart has enough items for repeated interactions | Increment, decrement, remove in sequence | UI stays in sync after each transition | Count, rows, and subtotal remain correct after each step |
 
 ## How to use this matrix
 
