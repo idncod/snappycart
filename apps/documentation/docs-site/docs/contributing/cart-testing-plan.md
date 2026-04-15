@@ -10,6 +10,8 @@ The goal is not to inflate the suite with random checks. The goal is to protect 
 
 For a full state-based test design reference, see [Cart state transition matrix](./cart-state-transition-matrix).
 
+For a rule-based test design reference, see [Cart decision tables](./cart-decision-tables).
+
 ## Why this plan exists
 
 SnappyCart is not a full online store. It is a reusable cart library.
