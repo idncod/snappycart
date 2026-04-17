@@ -51,7 +51,7 @@ function mountCartIcon() {
 }
 
 describe('CartIcon (CT)', () => {
-  it('matches the expected empty badge behaviour', () => {
+  it('CT-06 matches the expected empty badge behaviour', () => {
     mountCartIcon();
 
     cy.get('body').then(($body) => {
@@ -66,14 +66,14 @@ describe('CartIcon (CT)', () => {
     });
   });
 
-  it('updates the badge to 1 when the cart has one item', () => {
+  it('CT-07 updates the badge to 1 when the cart has one item', () => {
     mountCartIcon();
 
     cy.get(sel('seed-one-item')).click();
     cy.get(sel('cart-badge')).should('be.visible').and('have.text', '1');
   });
 
-  it('reflects the total item count when the cart has multiple items', () => {
+  it('CT-08 reflects the total item count when the cart has multiple items', () => {
     mountCartIcon();
 
     cy.get(sel('seed-multiple-items')).click();
