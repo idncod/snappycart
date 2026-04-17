@@ -296,4 +296,52 @@ describe('CartDrawer (CT)', () => {
       });
     });
   });
+
+  it('CT-23 renders visible product metadata for a representative product', () => {
+    mountDrawerWithHarness();
+
+    cy.get(sel('seed-apple')).click();
+
+    cy.get(sel('cart-item-apple')).should('be.visible');
+    cy.get(sel('cart-item-apple')).should('contain', 'Apple');
+  });
+
+  it('CT-24 keeps the UI in sync across increment, decrement, and remove actions', () => {
+    mountDrawerWithHarness();
+
+    cy.get(sel('seed-two-items')).click();
+
+    cy.get(sel('cart-item-apple')).should('be.visible');
+    cy.get(sel('cart-item-banana')).should('be.visible');
+    cy.get(sel('cart-qty-apple')).should('have.text', '1');
+    cy.get(sel('cart-qty-banana')).should('have.text', '1');
+
+    getSubtotalAmount().then((initial) => {
+      expect(initial).to.be.closeTo(apple.price + banana.price, 0.01);
+    });
+
+    cy.get(sel('cart-inc-apple')).click();
+    cy.get(sel('cart-qty-apple')).should('have.text', '2');
+
+    getSubtotalAmount().then((afterIncrement) => {
+      expect(afterIncrement).to.be.closeTo(apple.price * 2 + banana.price, 0.01);
+    });
+
+    cy.get(sel('cart-dec-apple')).click();
+    cy.get(sel('cart-qty-apple')).should('have.text', '1');
+
+    getSubtotalAmount().then((afterDecrement) => {
+      expect(afterDecrement).to.be.closeTo(apple.price + banana.price, 0.01);
+    });
+
+    cy.get(sel('cart-remove-banana')).click();
+
+    cy.get(sel('cart-item-banana')).should('not.exist');
+    cy.get(sel('cart-item-apple')).should('be.visible');
+    cy.get(sel('cart-qty-apple')).should('have.text', '1');
+
+    getSubtotalAmount().then((afterRemove) => {
+      expect(afterRemove).to.be.closeTo(apple.price, 0.01);
+    });
+  });
 });
