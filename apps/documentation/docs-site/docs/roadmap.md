@@ -2,7 +2,7 @@
 title: Roadmap
 ---
 
-Planned direction for SnappyCart.
+Planned direction for snappycart.
 
 Short term
 Stabilise API and docs

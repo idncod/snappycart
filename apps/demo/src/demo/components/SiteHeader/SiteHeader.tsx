@@ -45,14 +45,14 @@ export function SiteHeader({ links, onOpenCart }: SiteHeaderProps) {
         <div className={styles.left}>
           <img
             src="/snappycart_logo.svg"
-            alt="SnappyCart logo"
+            alt="snappycart logo"
             className={styles.logo}
             data-testid="site-logo"
           />
 
           <div className={styles.brandWrap}>
             <div className={styles.brand}>
-              <div className={styles.name}>SnappyCart</div>
+              <div className={styles.name}>snappycart</div>
               <div className={styles.sub}>Headless React cart</div>
             </div>
 

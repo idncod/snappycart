@@ -4,7 +4,7 @@ title: Cart testing plan
 
 # Cart testing plan
 
-This page defines the recommended automated testing plan for SnappyCart.
+This page defines the recommended automated testing plan for snappycart.
 
 The goal is not to inflate the suite with random checks. The goal is to protect the cart contract, the main UI behaviour, and the published package surface with a practical number of tests that contributors can keep healthy over time.
 
@@ -16,7 +16,7 @@ For a current coverage register with test file links and execution evidence, see
 
 ## Why this plan exists
 
-SnappyCart is not a full online store. It is a reusable cart library.
+snappycart is not a full online store. It is a reusable cart library.
 
 That changes the testing strategy.
 
@@ -31,7 +31,7 @@ We do **not** need a huge end-to-end suite for checkout, shipping, payment, or c
 
 ## Current scope
 
-This plan is based on the current SnappyCart architecture:
+This plan is based on the current snappycart architecture:
 
 - reducer-driven cart state
 - `CartProvider`
@@ -271,7 +271,7 @@ Run:
 
 ## Summary
 
-SnappyCart does not need a bloated QA suite.
+snappycart does not need a bloated QA suite.
 
 For the current architecture, **46 mandatory automated tests** is the right baseline. If the demo app is also part of release confidence, add **4 optional smoke tests** and bring the total to **50**.
 
