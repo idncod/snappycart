@@ -9,7 +9,7 @@ import styles from './index.module.scss';
 
 export default function Home(): ReactNode {
   return (
-    <Layout description="SnappyCart docs for a headless React cart engine with TypeScript and optional UI building blocks.">
+    <Layout description="snappycart docs for a headless React cart engine with TypeScript and optional UI building blocks.">
       <header className={styles.hero}>
         <Starfield />
         <div className={styles.glow} />
@@ -21,7 +21,7 @@ export default function Home(): ReactNode {
                 Ship cart UX that feels custom, not copied
               </Heading>
               <p className={styles.subtitle}>
-                SnappyCart gives you the cart brain, typed APIs, persistence, and optional UI
+                snappycart gives you the cart brain, typed APIs, persistence, and optional UI
                 building blocks. You keep full control of the look, the flow, and the checkout.
               </p>
 
