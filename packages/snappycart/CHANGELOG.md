@@ -1,5 +1,19 @@
 # snappycart
 
+## 1.2.5
+
+### Patch Changes
+
+- 9699021: Add Cypress test video evidence links.
+- af62f41: Update docs cypress CT-10, CT-22 cart statetransitions evidence
+- ad60ef9: Add test coverage and evidence documentation.
+- 6a91d03: Add Cypress CT coverage entries for CartDrawer state transitions to docs.
+- eb4475a: Add vitest testing page.
+- b724cec: Add cart decision tables documentation.
+- 0de179c: Created a documentation page "Cart state transition matrix".
+- ddf18b9: Add Cypress CT coverage entries for CT-23 and CT-24 to docs.
+- 0de179c: Add images and videos for matrix.
+
 ## 1.2.4
 
 ### Patch Changes
