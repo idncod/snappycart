@@ -1,5 +1,20 @@
 # snappycart
 
+## 1.2.4
+
+### Patch Changes
+
+- 328606d: Add cypress CT-11 to CT-21 coverage for CartDrawer state transitions.
+- 4ea9739: Add cypress CT for CartIcon opening empty CartDrawer.
+- a1cc0e2: Add cypress CT coverage for cart metadata and repeated interactions.
+- 42c2274: Add cypress CT coverage for cart state transitions.
+- dd877b6: Improve cart drawer selectors, styling, and test setup.
+- 9b807be: Update Cypress component testing.
+- 56ab59c: Add Cypress test data and update project structure for testing.
+- becca86: Add cypress component tests for CartIcon.
+- 6bdb5a1: Add vitest unit test coverage.
+- 11c266f: Update e2e cypress test.
+
 ## 1.2.3
 
 ### Patch Changes
