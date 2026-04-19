@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+/// <reference types="cypress" />
+
+import { useState } from 'react';
+import { mount } from 'cypress/react';
 import { CartProvider } from '../context/CartProvider';
 import { useCart } from '../hooks/useCart';
 import CartDrawer from './CartDrawer';
@@ -30,7 +33,7 @@ function CartIntegrationHarness() {
 }
 
 function mountCartIntegration() {
-  cy.mount(
+  mount(
     <CartProvider>
       <CartIntegrationHarness />
     </CartProvider>,

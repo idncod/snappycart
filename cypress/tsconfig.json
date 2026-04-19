@@ -8,5 +8,13 @@
     "noEmit": true
   },
   "files": ["./support/component.d.ts"],
-  "include": ["./**/*.ts", "./**/*.tsx", "./**/*.d.ts", "../src/**/*.cy.ts", "../src/**/*.cy.tsx"]
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./**/*.d.ts",
+    "../packages/**/src/**/*.cy.ts",
+    "../packages/**/src/**/*.cy.tsx",
+    "../apps/**/src/**/*.cy.ts",
+    "../apps/**/src/**/*.cy.tsx"
+  ]
 }

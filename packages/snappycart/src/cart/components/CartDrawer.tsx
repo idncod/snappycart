@@ -1,6 +1,12 @@
 import { useEffect, useId, useRef } from 'react';
 import { useCart } from '../hooks/useCart';
 
+function toTestKey(id: string | number): string {
+  return String(id)
+    .toLowerCase()
+    .replace(/[^a-z0-9-]+/g, '-');
+}
+
 type CartDrawerProps = {
   open: boolean;
   onClose: () => void;
@@ -23,8 +29,8 @@ export default function CartDrawer({
 
     closeRef.current?.focus();
 
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
     };
 
     window.addEventListener('keydown', onKeyDown);
@@ -39,6 +45,7 @@ export default function CartDrawer({
         className="snappycart-overlay"
         onClick={onClose}
         aria-hidden="true"
+        data-testid="cart-overlay"
         data-cy="cart-overlay"
       />
 
@@ -47,10 +54,16 @@ export default function CartDrawer({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
+        data-testid="cart-drawer"
         data-cy="cart-drawer"
       >
         <header className="snappycart-drawer-header">
-          <h3 id={titleId} className="snappycart-drawer-title" data-cy="cart-drawer-title">
+          <h3
+            id={titleId}
+            className="snappycart-drawer-title"
+            data-testid="cart-drawer-title"
+            data-cy="cart-drawer-title"
+          >
             {title} ({totalItems})
           </h3>
 
@@ -60,6 +73,7 @@ export default function CartDrawer({
             onClick={onClose}
             type="button"
             aria-label="Close cart"
+            data-testid="cart-close"
             data-cy="cart-close"
           >
             Close
@@ -68,83 +82,114 @@ export default function CartDrawer({
 
         <div className="snappycart-drawer-body">
           {items.length === 0 ? (
-            <p className="snappycart-empty" data-cy="cart-empty">
+            <p
+              className="snappycart-empty"
+              data-testid="empty-cart-state"
+              data-cy="cart-empty"
+              data-qa="empty-cart-state"
+            >
               Your cart is empty.
             </p>
           ) : (
-            items.map((li) => (
-              <div
-                className="snappycart-item"
-                key={String(li.product.id)}
-                data-cy={`cart-item-${li.product.id}`}
-              >
-                {li.product.imageUrl ? (
-                  <img
-                    className="snappycart-item-image"
-                    src={li.product.imageUrl}
-                    alt={li.product.name}
-                  />
-                ) : (
-                  <div className="snappycart-item-image snappycart-item-image--placeholder" />
-                )}
+            items.map((lineItem) => {
+              const testKey = toTestKey(lineItem.product.id);
 
-                <div className="snappycart-item-content">
-                  <div className="snappycart-item-name">{li.product.name}</div>
-                  <div className="snappycart-item-price">{formatMoney(li.product.price)}</div>
-                </div>
+              return (
+                <div
+                  className="snappycart-item"
+                  key={String(lineItem.product.id)}
+                  data-cy={`cart-item-${lineItem.product.id}`}
+                  data-testid={`cart-item-${testKey}`}
+                >
+                  {lineItem.product.imageUrl ? (
+                    <img
+                      className="snappycart-item-image"
+                      src={lineItem.product.imageUrl}
+                      alt={lineItem.product.name}
+                    />
+                  ) : (
+                    <div className="snappycart-item-image snappycart-item-image--placeholder" />
+                  )}
 
-                <div className="snappycart-item-actions">
-                  <div className="snappycart-qty" aria-label={`Quantity for ${li.product.name}`}>
-                    <button
-                      type="button"
-                      className="snappycart-qty-button"
-                      onClick={() => decrement(li.product.id)}
-                      aria-label={`Decrease quantity of ${li.product.name}`}
-                      data-cy={`cart-dec-${li.product.id}`}
+                  <div className="snappycart-item-content">
+                    <div
+                      className="snappycart-item-name"
+                      data-testid={`cart-item-name-${testKey}`}
+                      data-cy={`cart-item-name-${testKey}`}
                     >
-                      -
-                    </button>
-
-                    <span className="snappycart-qty-value" data-cy={`cart-qty-${li.product.id}`}>
-                      {li.quantity}
-                    </span>
-
-                    <button
-                      type="button"
-                      className="snappycart-qty-button"
-                      onClick={() => increment(li.product.id)}
-                      aria-label={`Increase quantity of ${li.product.name}`}
-                      data-cy={`cart-inc-${li.product.id}`}
-                    >
-                      +
-                    </button>
+                      {lineItem.product.name}
+                    </div>
+                    <div className="snappycart-item-price">
+                      {formatMoney(lineItem.product.price)}
+                    </div>
                   </div>
 
-                  <button
-                    type="button"
-                    className="snappycart-remove-button"
-                    onClick={() => removeItem(li.product.id)}
-                    data-cy={`cart-remove-${li.product.id}`}
-                  >
-                    Remove
-                  </button>
+                  <div className="snappycart-item-actions">
+                    <div
+                      className="snappycart-qty"
+                      aria-label={`Quantity for ${lineItem.product.name}`}
+                    >
+                      <button
+                        type="button"
+                        className="snappycart-qty-button"
+                        onClick={() => decrement(lineItem.product.id)}
+                        aria-label={`Decrease quantity of ${lineItem.product.name}`}
+                        data-cy={`cart-dec-${lineItem.product.id}`}
+                        data-testid={`cart-decrement-${testKey}`}
+                      >
+                        −
+                      </button>
+
+                      <span
+                        className="snappycart-qty-value"
+                        data-cy={`cart-qty-${lineItem.product.id}`}
+                        data-testid={`cart-quantity-${testKey}`}
+                      >
+                        {lineItem.quantity}
+                      </span>
+
+                      <button
+                        type="button"
+                        className="snappycart-qty-button"
+                        onClick={() => increment(lineItem.product.id)}
+                        aria-label={`Increase quantity of ${lineItem.product.name}`}
+                        data-cy={`cart-inc-${lineItem.product.id}`}
+                        data-testid={`cart-increment-${testKey}`}
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="snappycart-remove-button"
+                      onClick={() => removeItem(lineItem.product.id)}
+                      data-cy={`cart-remove-${lineItem.product.id}`}
+                      data-testid={`cart-remove-${testKey}`}
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 
         <footer className="snappycart-footer">
-          <div className="snappycart-row" data-cy="cart-subtotal">
+          <div className="snappycart-row" data-cy="cart-subtotal-row">
             <span>Subtotal</span>
-            <span>{formatMoney(subtotal)}</span>
+            <span data-testid="cart-subtotal" data-cy="cart-subtotal">
+              {formatMoney(subtotal)}
+            </span>
           </div>
 
           {items.length > 0 && (
             <button
               type="button"
-              className="snappycart-button snappycart-button--danger"
+              className="snappycart-button snappycart-button--ghost"
               onClick={clear}
+              data-testid="cart-clear"
               data-cy="cart-clear"
             >
               Clear cart
