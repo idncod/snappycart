@@ -1,5 +1,13 @@
 # snappycart
 
+## 1.2.6
+
+### Patch Changes
+
+- 2a1afcc: Improve site header and repo metadata.
+- 808a2a8: Add funding yml for snappycart.
+- b7eda3f: Add snappycart logo for posterity.
+
 ## 1.2.5
 
 ### Patch Changes

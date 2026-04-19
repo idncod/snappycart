@@ -1,5 +1,15 @@
 # demo
 
+## 0.0.2
+
+### Patch Changes
+
+- b7eda3f: Add snappycart logo for posterity.
+- Updated dependencies [2a1afcc]
+- Updated dependencies [808a2a8]
+- Updated dependencies [b7eda3f]
+  - snappycart@1.2.6
+
 ## 0.0.1
 
 ### Patch Changes

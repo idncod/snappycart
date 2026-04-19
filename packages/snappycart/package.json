@@ -1,7 +1,7 @@
 {
   "name": "snappycart",
   "private": false,
-  "version": "1.2.5",
+  "version": "1.2.6",
   "type": "module",
   "description": "A lightweight, embeddable React cart component with context support",
   "module": "dist/index.js",
