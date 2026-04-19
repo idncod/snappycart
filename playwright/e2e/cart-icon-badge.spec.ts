@@ -80,7 +80,7 @@ test('CartIcon badge decreases when item is removed from cart', async ({ page })
 
 
 
-test.only('CartIcon badge decreases when quantity of the same item decreases', async ({ page }) => {
+test('CartIcon badge decreases when quantity of the same item decreases', async ({ page }) => {
   const addButtons = page.getByRole('button', { name: /add to cart/i });
   await addButtons.nth(0).click();
   await addButtons.nth(0).click();
