@@ -81,21 +81,45 @@ That is intentional.
 The point of this page is not to hide duplication. The point is to make duplication visible and understandable.
 
 ---
-
 ## Unit and integration coverage
 
 These tests validate core cart behaviour inside the package itself.
 
 ### Vitest coverage
 
-| Status | Area | Level | Framework | What is covered | GitHub test link | Video evidence link | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Confirmed | Cart provider and hook contract | Integration | Vitest | add item with default quantity | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Validates provider state update through hook usage |
-| Confirmed | Cart provider and hook contract | Integration | Vitest | add item with explicit quantity | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Same file, separate scenario |
-| Confirmed | Cart provider and hook contract | Integration | Vitest | increment and decrement, including removal at zero | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Covers quantity mutation path |
-| Confirmed | Cart provider and hook contract | Integration | Vitest | remove item directly | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Direct line removal |
-| Confirmed | Derived values | Integration | Vitest | totalItems and subtotal calculation | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Validates derived values |
-| Confirmed | Cart reset | Integration | Vitest | clear cart | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | Add Drive or YouTube link | Confirms empty result after clear |
+For the canonical Vitest inventory and test IDs, read [Vitest Testing](/docs/contributing/vitest-testing).
+
+### Vitest unit coverage
+
+| Test ID | Status | Area | Level | Framework | What is covered | GitHub test link | Matrix reference | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| VT-01 | Confirmed | Cart reducer | Unit | Vitest | add new item | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-01](/docs/contributing/vitest-testing#vt-01) | Confirms a new cart line is inserted with the expected quantity and values |
+| VT-02 | Confirmed | Cart reducer | Unit | Vitest | add existing item and merge quantity | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-02](/docs/contributing/vitest-testing#vt-02) | Confirms duplicate adds increase quantity instead of creating a second line |
+| VT-03 | Confirmed | Cart reducer | Unit | Vitest | add item with invalid quantity and normalise it | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-03](/docs/contributing/vitest-testing#vt-03) | Confirms invalid quantity input is normalised to a safe stored value |
+| VT-04 | Confirmed | Cart reducer | Unit | Vitest | add item with decimal quantity and floor it | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-04](/docs/contributing/vitest-testing#vt-04) | Confirms decimal quantity is normalised before storage |
+| VT-05 | Confirmed | Cart reducer | Unit | Vitest | remove item | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-05](/docs/contributing/vitest-testing#vt-05) | Confirms the matching reducer line is removed |
+| VT-06 | Confirmed | Cart reducer | Unit | Vitest | increment item | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-06](/docs/contributing/vitest-testing#vt-06) | Confirms quantity increases by one |
+| VT-07 | Confirmed | Cart reducer | Unit | Vitest | decrement item above one | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-07](/docs/contributing/vitest-testing#vt-07) | Confirms quantity decreases without removing the line |
+| VT-08 | Confirmed | Cart reducer | Unit | Vitest | decrement item from one and remove the line | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-08](/docs/contributing/vitest-testing#vt-08) | Confirms the item is removed when decrement reaches the removal boundary |
+| VT-09 | Confirmed | Cart reducer | Unit | Vitest | set positive quantity | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-09](/docs/contributing/vitest-testing#vt-09) | Confirms quantity updates directly to the requested value |
+| VT-10 | Confirmed | Cart reducer | Unit | Vitest | set decimal quantity and floor it | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-10](/docs/contributing/vitest-testing#vt-10) | Confirms decimal quantity is normalised before storage |
+| VT-11 | Confirmed | Cart reducer | Unit | Vitest | set quantity to zero and remove the line | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-11](/docs/contributing/vitest-testing#vt-11) | Confirms zero quantity removes the line from state |
+| VT-12 | Confirmed | Cart reducer | Unit | Vitest | set negative quantity and remove the line | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-12](/docs/contributing/vitest-testing#vt-12) | Confirms invalid negative quantity does not remain in state |
+| VT-13 | Confirmed | Cart reducer | Unit | Vitest | clear cart | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-13](/docs/contributing/vitest-testing#vt-13) | Confirms reducer state resets to an empty cart |
+| VT-14 | Confirmed | Cart reducer | Unit | Vitest | calculate total items | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-14](/docs/contributing/vitest-testing#vt-14) | Confirms derived total item count is correct |
+| VT-15 | Confirmed | Cart reducer | Unit | Vitest | calculate subtotal | [cartReducer.test.ts](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/reducer/cartReducer.test.ts) | [VT-15](/docs/contributing/vitest-testing#vt-15) | Confirms derived subtotal is correct |
+
+### Vitest integration coverage
+
+| Test ID | Status | Area | Level | Framework | What is covered | GitHub test link | Matrix reference | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| VT-16 | Confirmed | Cart provider and hook contract | Integration | Vitest | throws outside provider | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | [VT-16](/docs/contributing/vitest-testing#vt-16) | Confirms `useCart` throws when used outside `CartProvider` |
+| VT-17 | Confirmed | Cart provider and hook contract | Integration | Vitest | exposes empty initial state | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | [VT-17](/docs/contributing/vitest-testing#vt-17) | Confirms the default empty cart contract on first render |
+| VT-18 | Confirmed | Cart provider and hook contract | Integration | Vitest | add item updates `items`, `totalItems`, and `subtotal` | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | [VT-18](/docs/contributing/vitest-testing#vt-18) | Validates provider state update through hook usage |
+| VT-19 | Confirmed | Cart provider and hook contract | Integration | Vitest | remove item updates derived values | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | [VT-19](/docs/contributing/vitest-testing#vt-19) | Confirms line removal updates totals correctly |
+| VT-20 | Confirmed | Cart provider and hook contract | Integration | Vitest | increment and decrement update derived values | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | [VT-20](/docs/contributing/vitest-testing#vt-20) | Covers quantity mutation path and keeps derived values in sync |
+| VT-21 | Confirmed | Cart provider and hook contract | Integration | Vitest | clear resets state | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | [VT-21](/docs/contributing/vitest-testing#vt-21) | Confirms full cart reset |
+| VT-22 | Confirmed | Cart provider and hook contract | Integration | Vitest | add item with explicit quantity | [CartProvider.test.tsx](https://github.com/idncod/snappycart/blob/master/packages/snappycart/src/cart/context/CartProvider.test.tsx) | [VT-22](/docs/contributing/vitest-testing#vt-22) | Additional integration scenario covering explicit quantity input |
 
 ### Guidance for contributors
 
@@ -107,7 +131,6 @@ Use this section for:
 - safe handling of cart mutations inside the library
 
 If the change is purely internal and does not require a browser, this is usually the cheapest layer.
-
 ---
 
 ## Component coverage
