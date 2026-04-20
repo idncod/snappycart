@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('add item to cart', () => {
+      
       test.beforeEach(async ({ page }) => {
             await page.goto('/');
       });
@@ -10,12 +11,12 @@ test.describe('add item to cart', () => {
             const addButtonApple = page.locator(`article:has-text("Apple")`).getByRole('button', { name: /add to cart/i })
             await addButtonApple.first().click();
 
-            const badge = page.locator('.snappycart-cart-icon__badge');
+            const badge = page.locator('[data-testid="cart-badge"]');;
             await expect(badge).toHaveText('1');
 
-            await page.getByLabel('Open cart').click();
+            await page.locator('[data-testid="cart-icon"]').click();
 
-            const drawer = page.getByRole('dialog');
+            const drawer = page.locator('[data-testid="cart-drawer"]');
             await expect(drawer).toBeVisible();
 
             await expect(page.locator('.snappycart-item-name')).toHaveText(/apple/i);
