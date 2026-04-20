@@ -113,6 +113,11 @@ Use this table to decide what belongs in provider and hook integration tests.
 | <span id="vt-19">VT-19</span> | Cart provider and hook contract | Integration | Vitest    | remove item updates derived values                     | Removing a line updates totals correctly               |
 | <span id="vt-20">VT-20</span> | Cart provider and hook contract | Integration | Vitest    | increment and decrement update derived values          | Quantity changes keep derived state in sync            |
 | <span id="vt-21">VT-21</span> | Cart provider and hook contract | Integration | Vitest    | clear resets state                                     | Public cart state returns to empty after clear         |
+| <span id="vt-22">VT-22</span> | Cart provider and hook contract | Integration | Vitest | add item with explicit quantity | Extra scenario: Additional integration coverage kept outside the canonical `VT-*` baseline |
+
+The canonical Vitest baseline currently maps to `VT-01` through `VT-21`.
+
+The current suite contain additional Vitest scenarios beyond that baseline when they provide useful extra confidence. Those rows should be marked as extra coverage with a new canonical `VT-*` ID.
 
 ## How to use these matrices
 
