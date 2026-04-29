@@ -120,23 +120,76 @@ async function getFruitImageUrl(name: string): Promise<string> {
 }
 
 async function mapFruitToProduct(fruit: FruityViceFruit): Promise<CartProduct> {
+  const sharedImageUrl = getSharedDemoImageUrl(fruit.name);
+
   return {
-    id: `fruit-${fruit.id}`,
+    id: getStableProductId(fruit.name, fruit.id),
     name: fruit.name,
     price: toDemoPrice(fruit),
-    imageUrl: await getFruitImageUrl(fruit.name),
+    imageUrl: sharedImageUrl ?? (await getFruitImageUrl(fruit.name)),
   };
 }
 
+function getStableProductId(name: string, fallbackId: number): string {
+  const key = name.toLowerCase().replace(/\s+/g, '-');
+
+  const sharedDemoIds: Record<string, string> = {
+    apple: 'apple',
+    banana: 'banana',
+    orange: 'orange',
+    strawberry: 'strawberry',
+    strawberries: 'strawberry',
+  };
+
+  return sharedDemoIds[key] ?? `fruit-${fallbackId}`;
+}
+
+function getSharedDemoImageUrl(name: string): string | undefined {
+  const key = name.toLowerCase();
+
+  const map: Record<string, string> = {
+    apple: '🍎',
+    banana: '🍌',
+    orange: '🍊',
+    strawberry: '🍓',
+    strawberries: '🍓',
+  };
+
+  const emoji = map[key];
+
+  if (!emoji) {
+    return undefined;
+  }
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><rect width="160" height="160" rx="40" fill="#f4f4f5"/><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-size="88">${emoji}</text></svg>`;
+
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
 const fallbackProducts: CartProduct[] = [
-  { id: 'fallback-apple', name: 'Apple', price: 0.6, imageUrl: getFallbackImageUrl('Apple') },
-  { id: 'fallback-banana', name: 'Banana', price: 0.4, imageUrl: getFallbackImageUrl('Banana') },
-  { id: 'fallback-orange', name: 'Orange', price: 1.09, imageUrl: getFallbackImageUrl('Orange') },
   {
-    id: 'fallback-strawberry',
+    id: 'apple',
+    name: 'Apple',
+    price: 0.6,
+    imageUrl: getSharedDemoImageUrl('Apple') ?? getFallbackImageUrl('Apple'),
+  },
+  {
+    id: 'banana',
+    name: 'Banana',
+    price: 0.4,
+    imageUrl: getSharedDemoImageUrl('Banana') ?? getFallbackImageUrl('Banana'),
+  },
+  {
+    id: 'orange',
+    name: 'Orange',
+    price: 1.09,
+    imageUrl: getSharedDemoImageUrl('Orange') ?? getFallbackImageUrl('Orange'),
+  },
+  {
+    id: 'strawberry',
     name: 'Strawberry',
     price: 1.25,
-    imageUrl: getFallbackImageUrl('Strawberry'),
+    imageUrl: getSharedDemoImageUrl('Strawberry') ?? getFallbackImageUrl('Strawberry'),
   },
 ];
 
