@@ -3,14 +3,44 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: $z-index-header;
-  background: rgba(11, 13, 18, 0.72);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 50;
+  background: rgba(6, 10, 18, 0.88);
+  backdrop-filter: blur(14px);
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+                  90deg,
+                  transparent 0%,
+                  rgba(255, 122, 24, 0.55) 10%,
+                  rgba(255, 208, 0, 0.45) 22%,
+                  rgba(124, 255, 107, 0.4) 38%,
+                  rgba(57, 213, 255, 0.42) 58%,
+                  rgba(124, 92, 255, 0.42) 78%,
+                  rgba(255, 77, 166, 0.55) 90%,
+                  transparent 100%
+  );
+  pointer-events: none;
 }
 
 .inner {
-  width: min(1120px, calc(100% - 48px));
+  width: var(--shell-width);
+  margin: 0 auto;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.inner {
+  width: var(--shell-width);
   margin: 0 auto;
   padding: 14px 0;
   display: flex;
