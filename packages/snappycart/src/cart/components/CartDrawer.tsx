@@ -177,7 +177,11 @@ export default function CartDrawer({
         </div>
 
         <footer className="snappycart-footer">
-          <div className="snappycart-row" data-cy="cart-subtotal-row">
+          <div
+            className="snappycart-row"
+            data-testid="cart-subtotal-row"
+            data-cy="cart-subtotal-row"
+          >
             <span>Subtotal</span>
             <span data-testid="cart-subtotal" data-cy="cart-subtotal">
               {formatMoney(subtotal)}
