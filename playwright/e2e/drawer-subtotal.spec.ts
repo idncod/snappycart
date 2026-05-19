@@ -11,7 +11,6 @@ import { test, expect } from '@playwright/test';
             const itemPriceLocator = page.locator('article:has-text("Apple")').getByText('£');
             const itemPriceText = await itemPriceLocator.innerText()
             const itemPrice = parseFloat(itemPriceText.replace('£', '').trim());
-            console.log(itemPrice)
 
             const addButtonApple = page.locator(`article:has-text("Apple")`).getByRole('button', { name: /add to cart/i })
             await addButtonApple.first().click();
