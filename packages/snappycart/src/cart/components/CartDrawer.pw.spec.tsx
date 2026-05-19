@@ -20,4 +20,14 @@ test.describe('CartDrawer', () => {
     await component.locator('[data-cy="cart-close"]').click();
     expect(closed).toBe(true);
   });
+
+  test('CartDrawer does not render when closed', async ({ mount }) => {
+    const component = await mount(
+      <CartProvider>
+        <CartDrawer open={false} onClose={() => {}} title="Your Cart" />
+      </CartProvider>,
+    );
+
+    await expect(component.locator('[data-testid="cart-drawer"]')).not.toBeVisible();
+  });
 });
