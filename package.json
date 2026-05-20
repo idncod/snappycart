@@ -21,7 +21,6 @@
     "prepare": "node .husky/install.mjs",
     "sync:readme": "cp README.md packages/snappycart/README.md",
     "test-ct": "playwright test -c playwright-ct.config.ts"
-
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
