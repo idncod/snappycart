@@ -9,16 +9,39 @@ import { Quickstart } from './demo/components/Quickstart/Quickstart';
 import { UseCases } from './demo/components/UseCases/UseCases';
 import { SiteFooter } from './demo/components/SiteFooter/SiteFooter';
 
+function getDemoFruitImageUrl(name: string): string {
+  const key = name.toLowerCase();
+
+  const map: Record<string, string> = {
+    apple: '🍎',
+    banana: '🍌',
+    orange: '🍊',
+    strawberries: '🍓',
+    strawberry: '🍓',
+  };
+
+  const emoji = map[key] ?? '🍏';
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><rect width="160" height="160" rx="40" fill="#f4f4f5"/><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-size="88">${emoji}</text></svg>`;
+
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
 export default function App() {
   const { addItem } = useCart();
   const [open, setOpen] = useState(false);
 
   const products = useMemo<CartProduct[]>(
     () => [
-      { id: 'apple', name: 'Apple', price: 0.6, imageUrl: 'apple.png' },
-      { id: 'banana', name: 'Banana', price: 0.4, imageUrl: 'banana.png' },
-      { id: 'orange', name: 'Orange', price: 0.55, imageUrl: 'orange.png' },
-      { id: 'strawberry', name: 'Strawberries', price: 1.25, imageUrl: 'strawberry.png' },
+      { id: 'apple', name: 'Apple', price: 0.6, imageUrl: getDemoFruitImageUrl('Apple') },
+      { id: 'banana', name: 'Banana', price: 0.4, imageUrl: getDemoFruitImageUrl('Banana') },
+      { id: 'orange', name: 'Orange', price: 0.55, imageUrl: getDemoFruitImageUrl('Orange') },
+      {
+        id: 'strawberry',
+        name: 'Strawberries',
+        price: 1.25,
+        imageUrl: getDemoFruitImageUrl('Strawberries'),
+      },
     ],
     [],
   );
@@ -149,10 +172,6 @@ export default function App() {
         </section>
 
         <section id="quickstart" className={styles.section}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.h2}>Quickstart</h2>
-            <p className={styles.note}>Copy paste, no ceremony.</p>
-          </div>
           <Quickstart />
         </section>
 

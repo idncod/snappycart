@@ -9,7 +9,9 @@
   --radius: #{$radius-md};
   --radius-sm: #{$radius-sm};
   --shadow: #{$shadow-md};
-  --gap: #{$spacing-md};
+  --shell-max: 1920px;
+  --shell-gutter: 24px;
+  --shell-width: min(var(--shell-max), calc(100% - (var(--shell-gutter) * 2)));--gap: #{$spacing-md};
   --max: 1120px;
 }
 
@@ -53,4 +55,36 @@ img,
 svg {
   display: block;
   max-width: 100%;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }

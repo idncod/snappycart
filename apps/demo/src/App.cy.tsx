@@ -1,10 +1,11 @@
 import App from './App';
 import { CartProvider } from 'snappycart';
+import { mount } from 'cypress/react';
 import 'snappycart/styles.css';
 
 describe('<App />', () => {
   it('renders the demo app with initial empty cart state', () => {
-    cy.mount(
+    mount(
       <CartProvider>
         <App />
       </CartProvider>,

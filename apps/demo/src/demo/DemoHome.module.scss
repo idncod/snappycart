@@ -5,7 +5,7 @@
 }
 
 .page {
-  width: min(1120px, calc(100% - 48px));
+  width: var(--shell-width);
   margin: 0 auto;
   padding: 34px 0 90px;
   display: flex;
