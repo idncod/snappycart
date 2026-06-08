@@ -43,12 +43,14 @@ export function SiteHeader({ links, onOpenCart }: SiteHeaderProps) {
     <header className={styles.header} data-testid="site-header">
       <div className={styles.inner}>
         <div className={styles.left}>
-          <img
-            src="/snappycart_logo.svg"
-            alt="snappycart logo"
-            className={styles.logo}
-            data-testid="site-logo"
-          />
+          <a href="/" data-testid="site-logo-link">
+            <img
+              src="/snappycart_logo.svg"
+              alt="snappycart logo"
+              className={styles.logo}
+              data-testid="site-logo"
+            />
+          </a>
 
           <div className={styles.brandWrap}>
             <div className={styles.brand}>
