@@ -13,10 +13,8 @@ test('remove item from cart', async ({page}) => {
 
     await expect(removeButton).toBeVisible();
     await removeButton.click();
-
+    
     await expect(cartEmptyText).toBeVisible();
     await expect(subtotalAmount).toHaveText('£0.00');
-
-
 
 })
